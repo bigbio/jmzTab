@@ -6,8 +6,7 @@ import uk.ac.ebi.pride.jmztab.model.*;
 import java.net.URI;
 import java.util.SortedMap;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author qingwei
@@ -157,7 +156,7 @@ public class DynamicMetadataTest {
 
         for (Assay assay : mtd.getMetadata().getAssayMap().values()) {
             if (assay.getSample() != null) {
-                assertFalse(assay.getSample().getId().equals(1));
+              assertNotEquals(1, (int) assay.getSample().getId());
             }
         }
 
@@ -178,7 +177,7 @@ public class DynamicMetadataTest {
 
         for (Assay assay : mtd.getMetadata().getAssayMap().values()) {
             if (assay.getMsRun() != null) {
-                assertFalse(assay.getMsRun().getId().equals(1));
+              assertNotEquals(1, (int) assay.getMsRun().getId());
             }
         }
     }

@@ -10,7 +10,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.MZTabErrorList;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author qingwei

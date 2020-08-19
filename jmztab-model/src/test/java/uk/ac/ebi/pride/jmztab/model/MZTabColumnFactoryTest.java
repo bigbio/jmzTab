@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class MZTabColumnFactoryTest {
     @Test
-    public void testProteinColumns() throws Exception {
+    public void testProteinColumns() {
         MZTabColumnFactory factory = MZTabColumnFactory.getInstance(Section.Protein_Header);
         factory.addDefaultStableColumns();
 

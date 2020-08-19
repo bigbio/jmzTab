@@ -9,8 +9,7 @@ import uk.ac.ebi.pride.jmztab.model.Metadata;
 import uk.ac.ebi.pride.jmztab.model.Sample;
 import uk.ac.ebi.pride.jmztab.utils.errors.*;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Test all parser error.
@@ -26,7 +25,7 @@ public class MTDLineValidateTest {
     private MZTabErrorList errorList;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         parser = new MTDLineParser();
         metadata = parser.getMetadata();
         metadata.setDescription("test...");
@@ -34,28 +33,28 @@ public class MTDLineValidateTest {
     }
 
     @Test
-    public void testMZTabDescription() throws Exception {
+    public void testMZTabDescription() {
         try {
             parser.parse(1, "MTD\tmzTab-ver\t1.0 rc5", errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.MTDDefineLabel);
+          assertSame(e.getError().getType(), FormatErrorType.MTDDefineLabel);
             logger.debug(e.getMessage());
         }
 
         try {
             parser.parse(1, "MTD\tmzTab-mode\tUnknow", errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.MZTabMode);
+          assertSame(e.getError().getType(), FormatErrorType.MZTabMode);
             logger.debug(e.getMessage());
         }
 
         try {
             parser.parse(1, "MTD\tmzTab-type\tUnknow", errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.MZTabType);
+          assertSame(e.getError().getType(), FormatErrorType.MZTabType);
             logger.debug(e.getMessage());
         }
     }
@@ -64,32 +63,32 @@ public class MTDLineValidateTest {
     public void testIndexElement() throws Exception {
         // param name can not set empty.
         parser.parse(1, "MTD\tsample_processing[1]\t[, SEP:00173, ,]", errorList);
-        assertTrue(errorList.size() == 1);
-        assertTrue(errorList.getError(0).getType() ==  FormatErrorType.ParamList);
+      assertEquals(1, errorList.size());
+      assertSame(errorList.getError(0).getType(), FormatErrorType.ParamList);
 
         // second param name can not set empty.
         parser.parse(1, "MTD\tsample_processing[1]\t[SEP, SEP:00142, enzyme digestion, ]|[MS, MS:1001251, , ]", errorList);
-        assertTrue(errorList.size() == 2);
-        assertTrue(errorList.getError(1).getType() ==  FormatErrorType.ParamList);
+      assertEquals(2, errorList.size());
+      assertSame(errorList.getError(1).getType(), FormatErrorType.ParamList);
 
         // split char error.
         parser.parse(1, "MTD\tsample_processing[1]\t[SEP, SEP:00142, enzyme digestion, ]/[MS, MS:1001251, Trypsin, ]", errorList);
-        assertTrue(errorList.size() == 3);
-        assertTrue(errorList.getError(2).getType() ==  FormatErrorType.ParamList);
+      assertEquals(3, errorList.size());
+      assertSame(errorList.getError(2).getType(), FormatErrorType.ParamList);
 
         try {
             // split char error.
             parser.parse(1, "MTD\tsample_processing[x]\t[SEP, SEP:00142, enzyme digestion, ]", errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.IdNumber);
+          assertSame(e.getError().getType(), LogicalErrorType.IdNumber);
             logger.debug(e.getMessage());
         }
 
         // param error.
         parser.parse(1, "MTD\tinstrument[1]-analyzer[1]\t[MS, MS:1000291, ,]", errorList);
-        assertTrue(errorList.size() == 4);
-        assertTrue(errorList.getError(3).getType() ==  FormatErrorType.Param);
+      assertEquals(4, errorList.size());
+      assertSame(errorList.getError(3).getType(), FormatErrorType.Param);
     }
 
     @Test
@@ -97,28 +96,28 @@ public class MTDLineValidateTest {
 
         // no error.
         parser.parse(1, "MTD\tpublication[1]\tpubmed:21063943|doi:10.1007/978-1-60761-987-1_6", errorList);
-        assertTrue(errorList.size() == 0);
+      assertEquals(0, errorList.size());
 
         // split char error.
         parser.parse(1, "MTD\tpublication[1]\tpubmed:21063943/doi:10.1007/978-1-60761-987-1_6", errorList);
-        assertTrue(errorList.size() == 1);
-        assertTrue(errorList.getError(0).getType() == FormatErrorType.Publication);
+      assertEquals(1, errorList.size());
+      assertSame(errorList.getError(0).getType(), FormatErrorType.Publication);
 
         // error publication item
         parser.parse(1, "MTD\tpublication[1]\tpub:21063943", errorList);
-        assertTrue(errorList.size() == 2);
-        assertTrue(errorList.getError(1).getType() == FormatErrorType.Publication);
+      assertEquals(2, errorList.size());
+      assertSame(errorList.getError(1).getType(), FormatErrorType.Publication);
 
         // split char error.
         parser.parse(1, "MTD\tpublication[1]\tdoi:21063943/pubmed:21063943", errorList);
-        assertTrue(errorList.size() == 3);
-        assertTrue(errorList.getError(2).getType() == FormatErrorType.Publication);
+      assertEquals(3, errorList.size());
+      assertSame(errorList.getError(2).getType(), FormatErrorType.Publication);
     }
 
     @Test
     public void testInvalidColUnitLabel() throws Exception {
         parser.parse(1, "MTD\tcolunit-unknown\tretention_time=[UO,UO:0000031, minute,]", errorList);
-        assertTrue(errorList.getError(0).getType() == FormatErrorType.MTDDefineLabel);
+      assertSame(errorList.getError(0).getType(), FormatErrorType.MTDDefineLabel);
         logger.debug(errorList.getError(0).getMessage());
     }
 
@@ -144,7 +143,7 @@ public class MTDLineValidateTest {
                 "protein_coverage";
 
         prtParser.parse(1, headerLine, errorList);
-        assertTrue(errorList.getError(0).getType() == FormatErrorType.ColUnit);
+      assertSame(errorList.getError(0).getType(), FormatErrorType.ColUnit);
         logger.debug(errorList.getError(0).getMessage());
     }
 
@@ -170,7 +169,7 @@ public class MTDLineValidateTest {
                 "uri\t" +
                 "spectra_ref";
         pehParser.parse(1, headerLine, errorList);
-        assertTrue(errorList.getError(0).getType() == FormatErrorType.Param);
+      assertSame(errorList.getError(0).getType(), FormatErrorType.Param);
         logger.debug(errorList.getError(0).getMessage());
     }
 
@@ -182,9 +181,9 @@ public class MTDLineValidateTest {
         try {
             // not allow duplicate twice.
             parser.parse(1, "MTD\tprotein-quantification_unit\t[PRIDE, PRIDE:0000395, Ratio, ]", errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.DuplicationDefine);
+          assertSame(e.getError().getType(), LogicalErrorType.DuplicationDefine);
             logger.debug(e.getMessage());
         }
     }
@@ -207,10 +206,10 @@ public class MTDLineValidateTest {
         assertTrue(errorList.isEmpty());
 
         parser.parse(1, "MTD\tstudy_variable[1]-assay_refs\tassay[1], assay[1]", errorList);
-        assertTrue(errorList.getError(0).getType() == LogicalErrorType.DuplicationID);
+      assertSame(errorList.getError(0).getType(), LogicalErrorType.DuplicationID);
 
         parser.parse(1, "MTD\tstudy_variable[1]-sample_refs\tsample[1], sample[1]", errorList);
-        assertTrue(errorList.getError(1).getType() == LogicalErrorType.DuplicationID);
+      assertSame(errorList.getError(1).getType(), LogicalErrorType.DuplicationID);
     }
 
     @Test

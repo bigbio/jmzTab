@@ -232,7 +232,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
     @Override
     protected void fillData() {
         // Get a list of Identification ids
-        proteinIds = new HashSet<Comparable>();
+        proteinIds = new HashSet<>();
         try{
             if(!reader.hasProteinGroup()){
                 List<Comparable> proteinIds = reader.getProteinIds();
@@ -252,11 +252,8 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
             List<PSM> psmList = loadPSMs(reader.getAllSpectrumIdentificationItem());
             psms.addAll(psmList);
 
-        }catch(ConfigurationException e){
+        }catch(ConfigurationException | JAXBException e){
             throw new MZTabConversionException("Error try to retrieve the information for onw Protein");
-        }catch(JAXBException e){
-            throw new MZTabConversionException("Error try to retrieve the information for onw Protein");
-
         }
 
 
@@ -282,7 +279,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
         protein.addAmbiguityMembers(membersString);
 
         //Loop for spectrum to get all the ms_run to repeat the score at protein level
-        Set<MsRun> msRuns = new HashSet<MsRun>();
+        Set<MsRun> msRuns = new HashSet<>();
         for(SpectrumIdentificationItem spec: spectra){
             String[] spectumMap = reader.getIdentSpectrumMap().get(spec.getId());
             MsRun msRun = metadata.getMsRunMap().get(spectraToRun.get(spectumMap[1]));
@@ -417,10 +414,10 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
     /* Metadata */
     private void loadSearchEngineScores(){
 
-        Map<SearchEngineScoreParam, Integer> psmScores = new HashMap<SearchEngineScoreParam, Integer>();
-        Map<SearchEngineScoreParam, Integer> proteinScores = new HashMap<SearchEngineScoreParam, Integer>();
-        proteinScoreToScoreIndex = new HashMap<String, Integer>();
-        psmScoreToScoreIndex = new HashMap<String, Integer>();
+        Map<SearchEngineScoreParam, Integer> psmScores = new HashMap<>();
+        Map<SearchEngineScoreParam, Integer> proteinScores = new HashMap<>();
+        proteinScoreToScoreIndex = new HashMap<>();
+        psmScoreToScoreIndex = new HashMap<>();
 
        /**
          * Look for all scores are protein level, PSM, and ProteinHypothesis, PeptideHypothesis. We should
@@ -470,9 +467,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                 metadata.addProteinSearchEngineScoreParam(idCount, param.getParam(null));
                 proteinScoreToScoreIndex.put(param.getParam(null).getAccession(),idCount);
             }
-        }catch(ConfigurationException ex){
-            ex.printStackTrace();
-        }catch (JAXBException ex){
+        }catch(ConfigurationException | JAXBException ex){
             ex.printStackTrace();
         }
 
@@ -580,7 +575,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
      * Converts the experiment's references into a couple of {@link uk.ac.ebi.pride.jmztab.model.PublicationItem} (including DOIs and PubMed ids)
      */
     private void loadReferences(Iterator<BibliographicReference> reference) {
-        List<PublicationItem> items = new ArrayList<PublicationItem>();
+        List<PublicationItem> items = new ArrayList<>();
         int i = 1;
         while(reference.hasNext()){
             BibliographicReference ref = reference.next();
@@ -712,7 +707,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
     }
 
     private void loadMsRun(List<SpectraData> spectraDataList) {
-        spectraToRun = new HashMap<Comparable, Integer>(spectraDataList.size());
+        spectraToRun = new HashMap<>(spectraDataList.size());
         if(spectraDataList != null && !spectraDataList.isEmpty()){
             int idRun = 1;
             for(SpectraData spectradata: spectraDataList){
@@ -787,9 +782,9 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
      */
     private List<PSM> loadPSMs(Set<String> oldpsmList) throws JAXBException {
 
-        Map<Comparable, Integer> indexSpectrumID = new HashMap<Comparable, Integer>();
-        List<PSM> psmList = new ArrayList<PSM>();
-        variableModifications = new HashMap<Param, Set<String>>();
+        Map<Comparable, Integer> indexSpectrumID = new HashMap<>();
+        List<PSM> psmList = new ArrayList<>();
+        variableModifications = new HashMap<>();
 
         for (String oldPsmId : oldpsmList) {
             SpectrumIdentificationItem oldPSM = reader.getSpectrumIdentificationItem(oldPsmId);
@@ -808,7 +803,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                 psm.setPost(peptideEvidenceRef.getPeptideEvidence().getPost());
 
 
-                List<Modification> mods = new ArrayList<Modification>();
+                List<Modification> mods = new ArrayList<>();
                 for (uk.ac.ebi.jmzidml.model.mzidml.Modification oldMod : oldPSM.getPeptide().getModification()) {
                     if(oldMod.getCvParam()!=null){
 
@@ -899,7 +894,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
 
                 //Set Search Engine
                 List<SearchEngineParam> searchEngineParams = getSearchEngineTypes(oldPSM.getCvParam());
-                Set<SearchEngineParam> searchEngines = new HashSet<SearchEngineParam>(searchEngineParams);
+                Set<SearchEngineParam> searchEngines = new HashSet<>(searchEngineParams);
 
                 for(SearchEngineParam searchEngineParam: searchEngines)
                     psm.addSearchEngineParam(searchEngineParam.getParam());
@@ -961,8 +956,8 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
         // set protein species and taxid. We are not sure about the origin of the protein. So we keep this value as
         // null to avoid discrepancies
 
-        Map<Integer, Integer> totalPSM = new HashMap<Integer, Integer>();
-        Set<Integer> msRunforProtein = new HashSet<Integer>();
+        Map<Integer, Integer> totalPSM = new HashMap<>();
+        Set<Integer> msRunforProtein = new HashSet<>();
 
         for(SpectrumIdentificationItem specItem: spectrumItems){
             String ref = reader.getIdentSpectrumMap().get(specItem.getId())[1];
@@ -982,7 +977,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
             protein.setNumPSMs(metadata.getMsRunMap().get(msRunId), totalPSM.get(msRunId));
 
         //Set Search Engine
-        Set<SearchEngineParam> searchEngines = new HashSet<SearchEngineParam>();
+        Set<SearchEngineParam> searchEngines = new HashSet<>();
         for(int i=0; i < THRESHOLD_LOOP_FOR_SCORE && i < spectrumItems.size(); i++){
             List<SearchEngineParam> searchEngineParams = getSearchEngineTypes(spectrumItems.get(i).getCvParam());
             searchEngines.addAll(searchEngineParams);
@@ -1008,12 +1003,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
     private void loadModifications(PSM psm, PeptideEvidence peptideEvidence) {
 
         //TODO simplify
-        Set<Modification> modifications = new TreeSet<Modification>(new Comparator<Modification>() {
-            @Override
-            public int compare(Modification o1, Modification o2) {
-                return o1.toString().compareToIgnoreCase(o2.toString());
-            }
-        });
+        Set<Modification> modifications = new TreeSet<>((o1, o2) -> o1.toString().compareToIgnoreCase(o2.toString()));
 
         for (uk.ac.ebi.jmzidml.model.mzidml.Modification ptm : peptideEvidence.getPeptide().getModification()) {
                 // ignore modifications that can't be processed correctly (can not be mapped to the protein)
@@ -1046,12 +1036,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
     private void loadModifications(Protein protein, List<SpectrumIdentificationItem> items) {
 
         //TODO simplify
-        Set<Modification> modifications = new TreeSet<Modification>(new Comparator<Modification>() {
-            @Override
-            public int compare(Modification o1, Modification o2) {
-                return o1.toString().compareToIgnoreCase(o2.toString());
-            }
-        });
+        Set<Modification> modifications = new TreeSet<>((o1, o2) -> o1.toString().compareToIgnoreCase(o2.toString()));
 
         for (SpectrumIdentificationItem item : items) {
             PeptideEvidence peptideEvidence = null;
@@ -1138,7 +1123,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
    }
 
     private List<SpectrumIdentificationItem> getScannedSpectrumIdentificationItems(ProteinDetectionHypothesis proteinDetectionHypothesis){
-        List<SpectrumIdentificationItem> spectrumIdentIds = new ArrayList<SpectrumIdentificationItem>();
+        List<SpectrumIdentificationItem> spectrumIdentIds = new ArrayList<>();
         List<PeptideHypothesis> peptideHypothesises = proteinDetectionHypothesis.getPeptideHypothesis();
         for(PeptideHypothesis peptideHypothesis: peptideHypothesises){
           List<SpectrumIdentificationItemRef> specRefs = peptideHypothesis.getSpectrumIdentificationItemRef();

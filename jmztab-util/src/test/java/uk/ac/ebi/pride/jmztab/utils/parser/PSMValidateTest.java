@@ -12,7 +12,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.*;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
 * @author qingwei
@@ -68,7 +68,7 @@ public class PSMValidateTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         for (MZTabError mzTabError : errorList.getErrorList()) {
             logger.debug(mzTabError.toString());
         }
@@ -76,20 +76,20 @@ public class PSMValidateTest {
     }
 
     private void assertError(MZTabErrorType errorType) {
-        assertTrue(errorList.getError(errorList.size() - 1).getType() == errorType);
+      assertSame(errorList.getError(errorList.size() - 1).getType(), errorType);
     }
 
     @Test
-    public void testSpectraRef() throws Exception {
+    public void testSpectraRef() {
         // ms_run[20] not defined in the metadata.
-        assertTrue(psmParser.checkSpectraRef(psmFactory.findColumnByHeader("spectra_ref"), "ms_run[20]:index=7|ms_run[2]:index=9").size() == 0);
+      assertEquals(0, psmParser.checkSpectraRef(psmFactory.findColumnByHeader("spectra_ref"), "ms_run[20]:index=7|ms_run[2]:index=9").size());
         assertError(FormatErrorType.SpectraRef);
 
         // ms_run[3] defined in the metadata, but ms_run[3]-location not provide, so we assume null (unknown).
         //after we allow null, the location is assumed is null and the parser continue parsing, before this change it was an error, now is a warning
         errorList.setLevel(MZTabErrorType.Level.Warn);
         psmParser.metadata.addMsRun(new MsRun(3));
-        assertTrue(psmParser.checkSpectraRef(psmFactory.findColumnByHeader("spectra_ref"), "ms_run[3]:index=7|ms_run[2]:index=9").size() == 2);
+      assertEquals(2, psmParser.checkSpectraRef(psmFactory.findColumnByHeader("spectra_ref"), "ms_run[3]:index=7|ms_run[2]:index=9").size());
         assertError(LogicalErrorType.SpectraRef);
     }
 }

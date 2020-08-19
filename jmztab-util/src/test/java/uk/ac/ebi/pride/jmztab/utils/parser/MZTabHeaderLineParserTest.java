@@ -388,6 +388,6 @@ public class MZTabHeaderLineParserTest {
 
         Set<String> mapping1LogicalPosition = positionMapping1.reverse().keySet();
         Set<String> mapping2LogicalPosition = positionMapping2.reverse().keySet();
-        assertTrue(mapping1LogicalPosition.equals(mapping2LogicalPosition));
+        assertEquals(mapping1LogicalPosition, mapping2LogicalPosition);
     }
 }

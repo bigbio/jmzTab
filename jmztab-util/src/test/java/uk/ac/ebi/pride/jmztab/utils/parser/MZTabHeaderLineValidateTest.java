@@ -14,7 +14,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.MZTabException;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author qingwei
@@ -41,7 +41,7 @@ public class MZTabHeaderLineValidateTest {
     }
 
     @Test
-    public void testStableColumns() throws Exception {
+    public void testStableColumns() {
         // miss accession column.
         String prh = "PRH\tdescription\ttaxid\tspecies\tdatabase\tdatabase_version\t" +
             "search_engine\tambiguity_members\tmodifications";
@@ -49,9 +49,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.StableColumn);
+          assertSame(e.getError().getType(), FormatErrorType.StableColumn);
             logger.debug(e.getMessage());
         }
 
@@ -62,9 +62,9 @@ public class MZTabHeaderLineValidateTest {
         PEHLineParser pehParser = new PEHLineParser(metadata);
         try {
             pehParser.parse(1, peh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.StableColumn);
+          assertSame(e.getError().getType(), FormatErrorType.StableColumn);
             logger.debug(e.getMessage());
         }
     }
@@ -95,7 +95,7 @@ public class MZTabHeaderLineValidateTest {
 //    }
 
     @Test
-    public void testMsRunOptionalColumn() throws Exception {
+    public void testMsRunOptionalColumn() {
         // not define ms_run[30] in metadata.
         String prh = "PRH\taccession\tdescription\ttaxid\tspecies\tdatabase\tdatabase_version\tsearch_engine\t" +
             "best_search_engine_score[1]\tsearch_engine_score[1]_ms_run[1]\treliability\tnum_psms_ms_run[1]\t" +
@@ -105,9 +105,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.MsRunNotDefined);
+          assertSame(e.getError().getType(), LogicalErrorType.MsRunNotDefined);
             logger.debug(e.getMessage());
         }
 
@@ -119,9 +119,9 @@ public class MZTabHeaderLineValidateTest {
         PEHLineParser pehParser = new PEHLineParser(metadata);
         try {
             pehParser.parse(1, peh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() ==  LogicalErrorType.ColumnNotValid);
+          assertSame(e.getError().getType(), LogicalErrorType.ColumnNotValid);
             logger.debug(e.getMessage());
         }
 
@@ -134,15 +134,15 @@ public class MZTabHeaderLineValidateTest {
         SMHLineParser smhParser = new SMHLineParser(metadata);
         try {
             smhParser.parse(1, smh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.IdNumber);
+          assertSame(e.getError().getType(), LogicalErrorType.IdNumber);
             logger.debug(e.getMessage());
         }
     }
 
     @Test
-    public void testAbundanceAssayColumns() throws Exception {
+    public void testAbundanceAssayColumns() {
         String prh = "PRH\taccession\tdescription\ttaxid\tspecies\tdatabase\tdatabase_version\t" +
             "search_engine\tbest_search_engine_score[1]\treliability\tambiguity_members\tmodifications\turi\t" +
             "go_terms\tprotein_coverage";
@@ -152,9 +152,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.AbundanceColumn);
+          assertSame(e.getError().getType(), FormatErrorType.AbundanceColumn);
             logger.debug(e.getMessage());
         }
 
@@ -169,9 +169,9 @@ public class MZTabHeaderLineValidateTest {
         prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.AssayNotDefined);
+          assertSame(e.getError().getType(), LogicalErrorType.AssayNotDefined);
             logger.debug(e.getMessage());
         }
 
@@ -185,15 +185,15 @@ public class MZTabHeaderLineValidateTest {
         PSHLineParser pshParser = new PSHLineParser(metadata);
         try {
             pshParser.parse(1, psh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.ColumnNotValid);
+          assertSame(e.getError().getType(), LogicalErrorType.ColumnNotValid);
             logger.debug(e.getMessage());
         }
     }
 
     @Test
-    public void testAbundanceStudyVariableColumns() throws Exception {
+    public void testAbundanceStudyVariableColumns() {
         String prh = "PRH\taccession\tdescription\ttaxid\tspecies\tdatabase\tdatabase_version\t" +
             "search_engine\tbest_search_engine_score[1]\treliability\tambiguity_members\tmodifications\turi\t" +
             "go_terms\tprotein_coverage";
@@ -203,9 +203,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.StudyVariableNotDefined);
+          assertSame(e.getError().getType(), LogicalErrorType.StudyVariableNotDefined);
             logger.debug(e.getMessage());
         }
 
@@ -217,9 +217,9 @@ public class MZTabHeaderLineValidateTest {
         prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.AbundanceColumnTogether);
+          assertSame(e.getError().getType(), LogicalErrorType.AbundanceColumnTogether);
             logger.debug(e.getMessage());
         }
 
@@ -231,15 +231,15 @@ public class MZTabHeaderLineValidateTest {
         prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.AbundanceColumnSameId);
+          assertSame(e.getError().getType(), LogicalErrorType.AbundanceColumnSameId);
             logger.debug(e.getMessage());
         }
     }
 
     @Test
-    public void testCVParamOptionalColumn() throws Exception {
+    public void testCVParamOptionalColumn() {
         //  Column names MUST only contain the following characters: 'A'-'Z', 'a'-'z', '0'-'9', '_', '-', '[', ']', and ':'.
         String prh = "PRH\taccession\tdescription\ttaxid\tspecies\tdatabase\tdatabase_version\t" +
             "search_engine\tbest_search_engine_score[1]\treliability\tambiguity_members\tmodifications\turi\t" +
@@ -248,9 +248,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == FormatErrorType.OptionalCVParamColumn);
+          assertSame(e.getError().getType(), FormatErrorType.OptionalCVParamColumn);
             logger.debug(e.getMessage());
         }
 
@@ -262,9 +262,9 @@ public class MZTabHeaderLineValidateTest {
         prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.AssayNotDefined);
+          assertSame(e.getError().getType(), LogicalErrorType.AssayNotDefined);
             logger.debug(e.getMessage());
         }
 
@@ -276,15 +276,15 @@ public class MZTabHeaderLineValidateTest {
         prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.IdNumber);
+          assertSame(e.getError().getType(), LogicalErrorType.IdNumber);
             logger.debug(e.getMessage());
         }
     }
 
     @Test
-    public void testModeType() throws Exception {
+    public void testModeType() {
         metadata.setMZTabMode(MZTabDescription.Mode.Complete);
         metadata.setMZTabType(MZTabDescription.Type.Identification);
 
@@ -297,9 +297,9 @@ public class MZTabHeaderLineValidateTest {
         PRHLineParser prhParser = new PRHLineParser(metadata);
         try {
             prhParser.parse(1, prh, errorList);
-            assertTrue(false);
+          fail();
         } catch (MZTabException e) {
-            assertTrue(e.getError().getType() == LogicalErrorType.NotDefineInHeader);
+          assertSame(e.getError().getType(), LogicalErrorType.NotDefineInHeader);
             logger.debug(e.getMessage());
         }
     }

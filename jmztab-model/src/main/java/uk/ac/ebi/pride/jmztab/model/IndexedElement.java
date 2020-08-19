@@ -55,7 +55,7 @@ public class IndexedElement {
      */
     public String getReference() {
 
-        return String.valueOf(element) + "[" + id + "]";
+        return element + "[" + id + "]";
     }
 
     /**

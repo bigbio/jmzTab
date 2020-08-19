@@ -11,7 +11,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.*;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author qingwei
@@ -61,7 +61,7 @@ public class PeptideValidateTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         for (MZTabError mzTabError : errorList.getErrorList()) {
             logger.debug(mzTabError.toString());
         }
@@ -69,11 +69,11 @@ public class PeptideValidateTest {
     }
 
     private void assertError(MZTabErrorType errorType) {
-        assertTrue(errorList.getError(errorList.size() - 1).getType() == errorType);
+      assertSame(errorList.getError(errorList.size() - 1).getType(), errorType);
     }
 
     @Test
-    public void testUnique() throws Exception {
+    public void testUnique() {
         pepParser.checkUnique(pehFactory.findColumnByHeader("unique"), "x");
         assertError(FormatErrorType.MZBoolean);
     }
