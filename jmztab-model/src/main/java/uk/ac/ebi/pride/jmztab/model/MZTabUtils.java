@@ -155,7 +155,7 @@ public class MZTabUtils {
      * Multiple identifiers MUST be separated by splitChar.
      */
     public static SplitList<String> parseStringList(char splitChar, String target) {
-        SplitList<String> list = new SplitList<String>(splitChar);
+        SplitList<String> list = new SplitList<>(splitChar);
 
         target = parseString(target);
         if (target == null) {
@@ -216,7 +216,7 @@ public class MZTabUtils {
     public static List<IndexedElement> parseIndexedElementList(String target, MetadataElement element) {
         SplitList<String> list = parseStringList(MZTabConstants.COMMA, target);
 
-        List<IndexedElement> indexedElementList = new ArrayList<IndexedElement>();
+        List<IndexedElement> indexedElementList = new ArrayList<>();
         IndexedElement indexedElement;
         for (String item : list) {
             indexedElement = parseIndexedElement(item, element);
@@ -236,7 +236,7 @@ public class MZTabUtils {
         SplitList<String> list = parseStringList(BAR, target);
 
         Param param;
-        SplitList<Param> paramList = new SplitList<Param>(BAR);
+        SplitList<Param> paramList = new SplitList<>(BAR);
         for (String item : list) {
             param = parseParam(item);
             if (param == null) {
@@ -256,7 +256,7 @@ public class MZTabUtils {
     public static SplitList<String> parseGOTermList(String target) {
         SplitList<String> list = parseStringList(COMMA, target);
 
-        SplitList<String> goList = new SplitList<String>(COMMA);
+        SplitList<String> goList = new SplitList<>(COMMA);
         for (String item : list) {
             item = parseString(item);
             if (item.startsWith("GO:")) {
@@ -321,7 +321,7 @@ public class MZTabUtils {
         SplitList<String> list = parseStringList(BAR, target);
 
         Double value;
-        SplitList<Double> valueList = new SplitList<Double>(BAR);
+        SplitList<Double> valueList = new SplitList<>(BAR);
         for (String item : list) {
             value = parseDouble(item);
             if (value == null) {
@@ -379,7 +379,7 @@ public class MZTabUtils {
         PublicationItem.Type type;
         String accession;
         PublicationItem item;
-        SplitList<PublicationItem> itemList = new SplitList<PublicationItem>(BAR);
+        SplitList<PublicationItem> itemList = new SplitList<>(BAR);
         for (String pub : list) {
             pub = parseString(pub);
             if (pub == null) {
@@ -419,7 +419,7 @@ public class MZTabUtils {
      */
     public static SplitList<SpectraRef> parseSpectraRefList(Metadata metadata, String target) {
         SplitList<String> list = parseStringList(BAR, target);
-        SplitList<SpectraRef> refList = new SplitList<SpectraRef>(BAR);
+        SplitList<SpectraRef> refList = new SplitList<>(BAR);
 
         Pattern pattern = Pattern.compile("ms_run\\[(\\d+)\\]:(.*)");
         Matcher matcher;
@@ -520,13 +520,11 @@ public class MZTabUtils {
         Pattern pattern = Pattern.compile("(.*CHEMMOD:.*)(&minus;)(.*)");
         Matcher matcher = pattern.matcher(target);
         if (matcher.find()) {
-            StringBuilder sb = new StringBuilder();
 
-            sb.append(matcher.group(1));
-            sb.append("-");
-            sb.append(matcher.group(3));
-
-            return sb.toString();
+            String sb = matcher.group(1) +
+                    "-" +
+                    matcher.group(3);
+            return sb;
         } else {
             return target;
         }
@@ -728,7 +726,7 @@ public class MZTabUtils {
      */
     public static SplitList<Modification> parseModificationList(Section section, String target) {
         target = parseString(target);
-        SplitList<Modification> modList = new SplitList<Modification>(COMMA);
+        SplitList<Modification> modList = new SplitList<>(COMMA);
 
         if (target == null) {
             return modList;

@@ -178,7 +178,7 @@ public class PSM extends MZTabRecord {
 
         SplitList<Param> params = getSearchEngine();
         if (params == null) {
-            params = new SplitList<Param>(BAR);
+            params = new SplitList<>(BAR);
             setSearchEngine(params);
             params.add(param);
         } else if (! params.contains(param)) {
@@ -307,7 +307,7 @@ public class PSM extends MZTabRecord {
 
         SplitList<Modification> modList = getModifications();
         if (modList == null) {
-            modList = new SplitList<Modification>(COMMA);
+            modList = new SplitList<>(COMMA);
             setModifications(modList);
         }
 
@@ -359,7 +359,7 @@ public class PSM extends MZTabRecord {
 
         SplitList<Double> rtList = getRetentionTime();
         if (rtList == null) {
-            rtList = new SplitList<Double>(BAR);
+            rtList = new SplitList<>(BAR);
             setRetentionTime(rtList);
         }
 
@@ -514,7 +514,7 @@ public class PSM extends MZTabRecord {
 
         SplitList<SpectraRef> specRefs = getSpectraRef();
         if (specRefs == null) {
-            specRefs = new SplitList<SpectraRef>(BAR);
+            specRefs = new SplitList<>(BAR);
             setSpectraRef(specRefs);
         }
 

@@ -34,12 +34,10 @@ public class CVParamOptionColumn extends OptionColumn {
      * @param param SHOULD NOT be null.
      */
     public static String getHeader(IndexedElement element, CVParam param) {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(OPT).append("_").append(element == null ? GLOBAL : element.getReference());
-        sb.append("_").append(CV).append(param.getAccession()).append("_").append(param.getName().replaceAll(" ", "_"));
-
-        return sb.toString();
+        String sb = OPT + "_" + (element == null ? GLOBAL : element.getReference()) +
+                "_" + CV + param.getAccession() + "_" + param.getName().replaceAll(" ", "_");
+        return sb;
     }
 
 }

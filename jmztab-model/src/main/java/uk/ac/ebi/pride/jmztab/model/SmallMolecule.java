@@ -50,7 +50,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<String> identifierList = getIdentifier();
         if (identifierList == null) {
-            identifierList = new SplitList<String>(BAR);
+            identifierList = new SplitList<>(BAR);
             setIdentifier(identifierList);
         }
         return identifierList.add(identifier);
@@ -117,7 +117,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<String> smiles = getSmiles();
         if (smiles == null) {
-            smiles = new SplitList<String>(BAR);
+            smiles = new SplitList<>(BAR);
             setSmiles(smiles);
         }
 
@@ -158,7 +158,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<String> inchiKeys = getInchiKey();
         if (inchiKeys == null) {
-            inchiKeys = new SplitList<String>(BAR);
+            inchiKeys = new SplitList<>(BAR);
             setInchiKey(inchiKeys);
         }
 
@@ -286,7 +286,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<Double> rtList = getRetentionTime();
         if (rtList == null) {
-            rtList = new SplitList<Double>(BAR);
+            rtList = new SplitList<>(BAR);
             setRetentionTime(rtList);
         }
 
@@ -492,7 +492,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<SpectraRef> specRefs = getSpectraRef();
         if (specRefs == null) {
-            specRefs = new SplitList<SpectraRef>(BAR);
+            specRefs = new SplitList<>(BAR);
             setSpectraRef(specRefs);
         }
 
@@ -544,7 +544,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<Param> params = getSearchEngine();
         if (params == null) {
-            params = new SplitList<Param>(BAR);
+            params = new SplitList<>(BAR);
             setSearchEngine(params);
         }
 
@@ -674,7 +674,7 @@ public class SmallMolecule extends MZTabRecord {
 
         SplitList<Modification> modList = getModifications();
         if (modList == null) {
-            modList = new SplitList<Modification>(COMMA);
+            modList = new SplitList<>(COMMA);
             setModifications(modList);
         }
 

@@ -1,5 +1,7 @@
 package uk.ac.ebi.pride.jmztab.model;
 
+import java.util.Objects;
+
 /**
  * Define a column header which used in {@link Section#Protein_Header}, {@link Section#Peptide_Header},
  * {@link Section#PSM_Header}, or {@link Section#Small_Molecule_Header}. There are two kinds of columns: stable column
@@ -235,9 +237,7 @@ public class MZTabColumn {
         this.element = element;
 
         this.logicPosition = generateLogicalPosition();
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.header).append("_").append(element.getReference());
-        this.header = sb.toString();
+        this.header = this.header + "_" + element.getReference();
     }
 
     /**
@@ -296,8 +296,8 @@ public class MZTabColumn {
         MZTabColumn column = (MZTabColumn) o;
 
         if (optional != column.optional) return false;
-        if (dataType != null ? !dataType.equals(column.dataType) : column.dataType != null) return false;
-        return (header != null ? header.equals(column.header) : column.header == null) && (logicPosition != null ? logicPosition.equals(column.logicPosition) : column.logicPosition == null);
+        if (!Objects.equals(dataType, column.dataType)) return false;
+        return (Objects.equals(header, column.header)) && (Objects.equals(logicPosition, column.logicPosition));
     }
 
     @Override

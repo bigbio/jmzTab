@@ -16,12 +16,12 @@ import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.*;
  * @since 23/05/13
  */
 public class Sample extends IndexedElement {
-    private List<Param> speciesList = new ArrayList<Param>();
-    private List<Param> tissueList = new ArrayList<Param>();
-    private List<Param> cellTypeList = new ArrayList<Param>();
-    private List<Param> diseaseList = new ArrayList<Param>();
+    private List<Param> speciesList = new ArrayList<>();
+    private List<Param> tissueList = new ArrayList<>();
+    private List<Param> cellTypeList = new ArrayList<>();
+    private List<Param> diseaseList = new ArrayList<>();
     private String description;
-    private List<Param> customList = new ArrayList<Param>();
+    private List<Param> customList = new ArrayList<>();
 
     /**
      * A biological material that has been analysed, to which descriptors of species, cell/tissue type etc. can be attached.

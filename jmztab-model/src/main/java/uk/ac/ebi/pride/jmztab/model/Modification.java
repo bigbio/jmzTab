@@ -27,7 +27,7 @@ public class Modification {
         NEUTRAL_LOSS
     }
 
-    private Map<Integer, CVParam> positionMap = new TreeMap<Integer, CVParam>();
+    private Map<Integer, CVParam> positionMap = new TreeMap<>();
     private Section section;
     private Type type;
     private String accession;

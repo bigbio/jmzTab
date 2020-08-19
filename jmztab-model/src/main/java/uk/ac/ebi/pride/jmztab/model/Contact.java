@@ -1,5 +1,7 @@
 package uk.ac.ebi.pride.jmztab.model;
 
+import java.util.Objects;
+
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
 import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.CONTACT_AFFILIATION;
 import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.CONTACT_EMAIL;
@@ -100,7 +102,7 @@ public class Contact extends IndexedElement {
 
         Contact contact = (Contact) o;
 
-        return email != null ? email.equals(contact.email) : contact.email == null;
+        return Objects.equals(email, contact.email);
     }
 
     /**

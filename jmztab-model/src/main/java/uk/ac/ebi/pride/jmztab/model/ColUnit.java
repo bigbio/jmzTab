@@ -62,10 +62,7 @@ public class ColUnit {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(column.getHeader()).append("=").append(value.toString());
-
-        return sb.toString();
+        return column.getHeader() + "=" + value.toString();
     }
 }

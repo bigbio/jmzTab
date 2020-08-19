@@ -103,7 +103,7 @@ public class AbundanceColumn extends MZTabColumn {
         //In this case we know the real position in which the column need to star, so the offset is one less
         int offset = new Integer(order)-1;
 
-        SortedMap<String, MZTabColumn> columns = new TreeMap<String, MZTabColumn>();
+        SortedMap<String, MZTabColumn> columns = new TreeMap<>();
         Section dataSection = Section.toDataSection(section);
 
         AbundanceColumn column;
@@ -127,7 +127,7 @@ public class AbundanceColumn extends MZTabColumn {
 
         //In this case we know the real position in which the column need to star, so the offset is one less
 
-        SortedMap<String, MZTabColumn> columns = new TreeMap<String, MZTabColumn>();
+        SortedMap<String, MZTabColumn> columns = new TreeMap<>();
         Section dataSection = Section.toDataSection(section);
 
         AbundanceColumn column;

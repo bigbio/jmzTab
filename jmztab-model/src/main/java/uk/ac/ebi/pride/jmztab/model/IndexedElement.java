@@ -54,11 +54,8 @@ public class IndexedElement {
      * @return element[id]
      */
     public String getReference() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append(element).append("[").append(id).append("]");
-
-        return sb.toString();
+        return String.valueOf(element) + "[" + id + "]";
     }
 
     /**

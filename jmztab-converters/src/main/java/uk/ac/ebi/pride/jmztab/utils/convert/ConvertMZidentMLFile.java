@@ -324,7 +324,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
 
                             Param param = new CVParam(mzIdParam.getCvRef(), mzIdParam.getAccession(), mzIdParam.getName(), String.valueOf(searchModification.getMassDelta()));
 
-                            String site = null;
+                            StringBuilder site = null;
                             String position = null;
 
                             if (param.getAccession().equalsIgnoreCase(UNKNOWN_MOD)) {
@@ -333,38 +333,38 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                             }
 
                             if (searchModification.getResidues() != null && !searchModification.getResidues().isEmpty()) {
-                                site = searchModification.getResidues().get(0);
+                                site = new StringBuilder(searchModification.getResidues().get(0));
 
                                 if (searchModification.getResidues().size() > 1) {
                                     //We annotate only one site in mzTab
                                     logger.warn("More than one residue specify");
                                     for (int k = 1; k <searchModification.getResidues().size(); k++) {
-                                        site = site + " " + searchModification.getResidues().get(k);
+                                        site.append(" ").append(searchModification.getResidues().get(k));
                                     }
                                 }
 
 
-                                if (site.equalsIgnoreCase(".")) {  //We try to find a more specific site in the rules
+                                if (site.toString().equalsIgnoreCase(".")) {  //We try to find a more specific site in the rules
 
                                     if (searchModification.getSpecificityRules() != null && !searchModification.getSpecificityRules().isEmpty()) {
 
                                         for (SpecificityRules specificityRules : searchModification.getSpecificityRules())
                                             for (CvParam rule : specificityRules.getCvParam()) {
                                                 if (rule.getAccession().equalsIgnoreCase(PEPTIDE_N_TERM)) {
-                                                    site = "N-term";
+                                                    site = new StringBuilder("N-term");
                                                     position = "Peptide N-term";
                                                 } else if (rule.getAccession().equalsIgnoreCase(PROTEIN_N_TERM)) {
-                                                    site = "N-term";
+                                                    site = new StringBuilder("N-term");
                                                     position = "Protein N-term";
                                                 } else if (rule.getAccession().equalsIgnoreCase(PEPTIDE_C_TERM)) {
-                                                    site = "C-term";
+                                                    site = new StringBuilder("C-term");
                                                     position = "Peptide C-term";
                                                 } else if (rule.getAccession().equalsIgnoreCase(PROTEIN_C_TERM)) {
-                                                    site = "C-term";
+                                                    site = new StringBuilder("C-term");
                                                     position = "Protein C-term";
                                                 } else {
                                                     logger.warn("Cv Term for Rule: " + rule.toString() + "is not recognized");
-                                                    site = "C-term or N-term";
+                                                    site = new StringBuilder("C-term or N-term");
                                                 }
                                             }
                                     }
@@ -375,7 +375,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                                 FixedMod mod = new FixedMod(i++);
                                 mod.setParam(param);
                                 if (site != null) {
-                                    mod.setSite(site);
+                                    mod.setSite(site.toString());
                                 }
                                 if (position != null) {
                                     mod.setPosition(position);
@@ -385,7 +385,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                                 VariableMod mod = new VariableMod(j++);
                                 mod.setParam(param);
                                 if (site != null) {
-                                    mod.setSite(site);
+                                    mod.setSite(site.toString());
                                 }
                                 if (position != null) {
                                     mod.setPosition(position);
@@ -898,9 +898,8 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                 }
 
                 //Set Search Engine
-                Set<SearchEngineParam> searchEngines = new HashSet<SearchEngineParam>();
                 List<SearchEngineParam> searchEngineParams = getSearchEngineTypes(oldPSM.getCvParam());
-                searchEngines.addAll(searchEngineParams);
+                Set<SearchEngineParam> searchEngines = new HashSet<SearchEngineParam>(searchEngineParams);
 
                 for(SearchEngineParam searchEngineParam: searchEngines)
                     psm.addSearchEngineParam(searchEngineParam.getParam());

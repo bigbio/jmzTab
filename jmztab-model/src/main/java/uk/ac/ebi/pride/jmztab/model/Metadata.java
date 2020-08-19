@@ -27,35 +27,35 @@ public class Metadata {
     private MZTabDescription tabDescription;
     private String title;
     private String description;
-    private SortedMap<Integer, SplitList<Param>> sampleProcessingMap = new TreeMap<Integer, SplitList<Param>>();
-    private SortedMap<Integer, Instrument> instrumentMap = new TreeMap<Integer, Instrument>();
-    private SortedMap<Integer, Software> softwareMap = new TreeMap<Integer, Software>();
-    private SortedMap<Integer, ProteinSearchEngineScore> proteinSearchEngineScoreMap = new TreeMap<Integer, ProteinSearchEngineScore>();
-    private SortedMap<Integer, PeptideSearchEngineScore> peptideSearchEngineScoreMap = new TreeMap<Integer, PeptideSearchEngineScore>();
-    private SortedMap<Integer, PSMSearchEngineScore> psmSearchEngineScoreMap = new TreeMap<Integer, PSMSearchEngineScore>();
-    private SortedMap<Integer, SmallMoleculeSearchEngineScore> smallMoleculeSearchEngineScoreMap = new TreeMap<Integer, SmallMoleculeSearchEngineScore>();
+    private SortedMap<Integer, SplitList<Param>> sampleProcessingMap = new TreeMap<>();
+    private SortedMap<Integer, Instrument> instrumentMap = new TreeMap<>();
+    private SortedMap<Integer, Software> softwareMap = new TreeMap<>();
+    private SortedMap<Integer, ProteinSearchEngineScore> proteinSearchEngineScoreMap = new TreeMap<>();
+    private SortedMap<Integer, PeptideSearchEngineScore> peptideSearchEngineScoreMap = new TreeMap<>();
+    private SortedMap<Integer, PSMSearchEngineScore> psmSearchEngineScoreMap = new TreeMap<>();
+    private SortedMap<Integer, SmallMoleculeSearchEngineScore> smallMoleculeSearchEngineScoreMap = new TreeMap<>();
 
-    private SplitList<Param> falseDiscoveryRate = new SplitList<Param>(BAR);
-    private SortedMap<Integer, Publication> publicationMap = new TreeMap<Integer, Publication>();
-    private SortedMap<Integer, Contact> contactMap = new TreeMap<Integer, Contact>();
-    private List<URI> uriList = new ArrayList<URI>();
-    private SortedMap<Integer, FixedMod> fixedModMap = new TreeMap<Integer, FixedMod>();
-    private  SortedMap<Integer, VariableMod> variableModMap = new TreeMap<Integer, VariableMod>();
+    private SplitList<Param> falseDiscoveryRate = new SplitList<>(BAR);
+    private SortedMap<Integer, Publication> publicationMap = new TreeMap<>();
+    private SortedMap<Integer, Contact> contactMap = new TreeMap<>();
+    private List<URI> uriList = new ArrayList<>();
+    private SortedMap<Integer, FixedMod> fixedModMap = new TreeMap<>();
+    private  SortedMap<Integer, VariableMod> variableModMap = new TreeMap<>();
     private Param quantificationMethod;
     private Param proteinQuantificationUnit;
     private Param peptideQuantificationUnit;
     private Param smallMoleculeQuantificationUnit;
-    private SortedMap<Integer, MsRun> msRunMap = new TreeMap<Integer, MsRun>();
-    private List<Param> customList = new ArrayList<Param>();
-    private SortedMap<Integer, Sample> sampleMap = new TreeMap<Integer, Sample>();
-    private SortedMap<Integer, Assay> assayMap = new TreeMap<Integer, Assay>();
-    private SortedMap<Integer, StudyVariable> studyVariableMap = new TreeMap<Integer, StudyVariable>();
-    private SortedMap<Integer, CV> cvMap = new TreeMap<Integer, CV>();
-    private List<ColUnit> proteinColUnitList = new ArrayList<ColUnit>();
-    private List<ColUnit> peptideColUnitList = new ArrayList<ColUnit>();
-    private List<ColUnit> psmColUnitList = new ArrayList<ColUnit>();
-    private List<ColUnit> smallMoleculeColUnitList = new ArrayList<ColUnit>();
-    private Map<String, String> colUnitMap = new HashMap<String, String>();
+    private SortedMap<Integer, MsRun> msRunMap = new TreeMap<>();
+    private List<Param> customList = new ArrayList<>();
+    private SortedMap<Integer, Sample> sampleMap = new TreeMap<>();
+    private SortedMap<Integer, Assay> assayMap = new TreeMap<>();
+    private SortedMap<Integer, StudyVariable> studyVariableMap = new TreeMap<>();
+    private SortedMap<Integer, CV> cvMap = new TreeMap<>();
+    private List<ColUnit> proteinColUnitList = new ArrayList<>();
+    private List<ColUnit> peptideColUnitList = new ArrayList<>();
+    private List<ColUnit> psmColUnitList = new ArrayList<>();
+    private List<ColUnit> smallMoleculeColUnitList = new ArrayList<>();
+    private Map<String, String> colUnitMap = new HashMap<>();
 
     /**
      * Create a metadata section with default {@link MZTabDescription}:
@@ -463,7 +463,7 @@ public class Metadata {
      */
     public void setFalseDiscoveryRate(SplitList<Param> falseDiscoveryRate) {
         if (falseDiscoveryRate == null) {
-            falseDiscoveryRate = new SplitList<Param>(BAR);
+            falseDiscoveryRate = new SplitList<>(BAR);
         }
 
         this.falseDiscoveryRate = falseDiscoveryRate;
@@ -966,7 +966,7 @@ public class Metadata {
 
         SplitList<Param> sampleProcessing = sampleProcessingMap.get(id);
         if (sampleProcessing == null) {
-            sampleProcessing = new SplitList<Param>(BAR);
+            sampleProcessing = new SplitList<>(BAR);
             sampleProcessing.add(param);
             sampleProcessingMap.put(id, sampleProcessing);
         } else {

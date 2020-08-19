@@ -104,12 +104,10 @@ public class MZTabError {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("[").append(type.getLevel()).append("-").append(type.getCode()).append("] ");
-        sb.append("line ").append(lineNumber).append(": ");
-        sb.append(message).append(NEW_LINE);
-
-        return sb.toString();
+        String sb = "[" + type.getLevel() + "-" + type.getCode() + "] " +
+                "line " + lineNumber + ": " +
+                message + NEW_LINE;
+        return sb;
     }
 }

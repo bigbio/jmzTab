@@ -25,7 +25,7 @@ import static uk.ac.ebi.pride.jmztab.model.MZTabUtils.parseDouble;
 public abstract class MZTabRecord {
     protected MZTabColumnFactory factory;
 
-    private TreeMap<String, Object> record = new TreeMap<String, Object>();
+    private TreeMap<String, Object> record = new TreeMap<>();
 
     /**
      * Create a record based on {@link MZTabColumnFactory} structure. The default cell value is null.

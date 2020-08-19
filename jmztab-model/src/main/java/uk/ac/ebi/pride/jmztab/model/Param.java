@@ -107,7 +107,7 @@ public class Param {
      * For example: [MOD, MOD:00648, "N,O-diacetylated L-serine",]
      */
     private void printReserveString(String name, StringBuilder sb) {
-        List<String> charList = new ArrayList<String>();
+        List<String> charList = new ArrayList<>();
 
         charList.add(",");
 
@@ -134,7 +134,7 @@ public class Param {
             value = value.trim();
 
             // define a reserved character list.
-            List<String> reserveCharList = new ArrayList<String>();
+            List<String> reserveCharList = new ArrayList<>();
 
             reserveCharList.add(",");
 

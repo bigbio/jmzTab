@@ -1,5 +1,7 @@
 package uk.ac.ebi.pride.jmztab.model;
 
+import java.util.Objects;
+
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
 
 /**
@@ -46,7 +48,7 @@ public abstract class SearchEngineScore extends IndexedElement {
 
         SearchEngineScore that = (SearchEngineScore) o;
 
-        return param != null ? param.equals(that.param) : that.param == null;
+        return Objects.equals(param, that.param);
     }
 
     @Override
