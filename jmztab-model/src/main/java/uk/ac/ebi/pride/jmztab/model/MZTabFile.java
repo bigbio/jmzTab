@@ -33,11 +33,11 @@ public class MZTabFile {
     private MZTabColumnFactory smallMoleculeColumnFactory;
 
     // The line number indexed sorted map.
-    private SortedMap<Integer, Comment> comments = new TreeMap<Integer, Comment>();
-    private SortedMap<Integer, Protein> proteins = new TreeMap<Integer, Protein>();
-    private SortedMap<Integer, Peptide> peptides = new TreeMap<Integer, Peptide>();
-    private SortedMap<Integer, PSM> psms = new TreeMap<Integer, PSM>();
-    private SortedMap<Integer, SmallMolecule> smallMolecules = new TreeMap<Integer, SmallMolecule>();
+    private SortedMap<Integer, Comment> comments = new TreeMap<>();
+    private SortedMap<Integer, Protein> proteins = new TreeMap<>();
+    private SortedMap<Integer, Peptide> peptides = new TreeMap<>();
+    private SortedMap<Integer, PSM> psms = new TreeMap<>();
+    private SortedMap<Integer, SmallMolecule> smallMolecules = new TreeMap<>();
 
     /**
      * Create a MZTabFile with defined metadata.
@@ -307,7 +307,7 @@ public class MZTabFile {
      * @return A unmodifiable collection of proteins identified by the given accession.
      */
     public Collection<Protein> getProteins(String accession) {
-        Collection<Protein> result = new ArrayList<Protein>();
+        Collection<Protein> result = new ArrayList<>();
 
         for (Protein record : proteins.values()) {
             if (record.getAccession().equals(accession)) {

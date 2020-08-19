@@ -3,6 +3,7 @@ package uk.ac.ebi.pride.jmztab.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
 import static uk.ac.ebi.pride.jmztab.model.MetadataElement.SOFTWARE;
@@ -33,7 +34,7 @@ public class Software extends IndexedElement {
      * The value of this field is deliberately set as a String, since there currently
      * do not exist cvParams for every possible setting
      */
-    private List<String> settingList = new ArrayList<String>();
+    private List<String> settingList = new ArrayList<>();
 
     /**
      * Software used to analyze the data and obtain the reported results. The parameter's value
@@ -92,7 +93,7 @@ public class Software extends IndexedElement {
 
         Software software = (Software) o;
 
-        return param.equals(software.param) && (settingList != null ? settingList.equals(software.settingList) : software.settingList == null);
+        return param.equals(software.param) && (Objects.equals(settingList, software.settingList));
     }
 
     @Override

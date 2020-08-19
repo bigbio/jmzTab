@@ -37,10 +37,10 @@ import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.TAB;
  */
 public class MZTabColumnFactory {
 
-    private SortedMap<String, MZTabColumn> stableColumnMapping = new TreeMap<String, MZTabColumn>();
-    private SortedMap<String, MZTabColumn> optionalColumnMapping = new TreeMap<String, MZTabColumn>();
-    private SortedMap<String, MZTabColumn> abundanceColumnMapping = new TreeMap<String, MZTabColumn>();
-    private SortedMap<String, MZTabColumn> columnMapping = new TreeMap<String, MZTabColumn>();
+    private SortedMap<String, MZTabColumn> stableColumnMapping = new TreeMap<>();
+    private SortedMap<String, MZTabColumn> optionalColumnMapping = new TreeMap<>();
+    private SortedMap<String, MZTabColumn> abundanceColumnMapping = new TreeMap<>();
+    private SortedMap<String, MZTabColumn> columnMapping = new TreeMap<>();
 
     private Section section;
 
@@ -660,7 +660,7 @@ public class MZTabColumnFactory {
      * @return tab split column header string list.
      */
     public SplitList<String> getHeaderList() {
-        SplitList<String> headerList = new SplitList<String>(TAB);
+        SplitList<String> headerList = new SplitList<>(TAB);
 
         for (MZTabColumn mzTabColumn : columnMapping.values()) {
             headerList.add(mzTabColumn.getHeader());
@@ -693,7 +693,7 @@ public class MZTabColumnFactory {
      * "112"                         num_psms_ms_run[2]                13               11
      */
     public SortedMap<Integer, MZTabColumn> getOffsetColumnsMap() {
-        SortedMap<Integer, MZTabColumn> map = new TreeMap<Integer, MZTabColumn>();
+        SortedMap<Integer, MZTabColumn> map = new TreeMap<>();
 
         int offset = 1;
         for (MZTabColumn column : columnMapping.values()) {
@@ -777,7 +777,7 @@ public class MZTabColumnFactory {
      * Query all the MZTabColumn which have the same order in factory.
      */
     public SortedMap<String, MZTabColumn> findAllColumnsByOrder(String order) {
-        SortedMap<String, MZTabColumn> mapping = new TreeMap<String, MZTabColumn>();
+        SortedMap<String, MZTabColumn> mapping = new TreeMap<>();
 
         for (String logicalPosition : columnMapping.keySet()) {
             if (order.equals(getColumnOrder(logicalPosition))) {

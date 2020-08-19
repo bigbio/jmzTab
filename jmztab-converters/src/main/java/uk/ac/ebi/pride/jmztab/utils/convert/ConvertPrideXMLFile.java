@@ -1248,7 +1248,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
 
             if (peptideItem.getSpectrum() != null) {
                 psm.setPSM_ID(peptideItem.getSpectrum().getId());
-                spectrumReference = "spectrum=" + Integer.toString(peptideItem.getSpectrum().getId());
+                spectrumReference = "spectrum=" + peptideItem.getSpectrum().getId();
                 // set the peptide spectrum reference
                 psm.addSpectraRef(new SpectraRef(metadata.getMsRunMap().get(1),  spectrumReference));
 

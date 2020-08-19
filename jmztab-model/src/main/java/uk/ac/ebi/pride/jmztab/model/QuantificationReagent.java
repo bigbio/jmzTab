@@ -54,7 +54,7 @@ public class QuantificationReagent extends CVParam {
     public static QuantificationReagent iTRAQ_reagent_119    = new QuantificationReagent("PRIDE:0000266", "iTRAQ reagent 119", null);
     public static QuantificationReagent iTRAQ_reagent_121    = new QuantificationReagent("PRIDE:0000267", "iTRAQ reagent 121", null);
 
-    public static Set<QuantificationReagent> reagentSet = new HashSet<QuantificationReagent>();
+    public static Set<QuantificationReagent> reagentSet = new HashSet<>();
     static {
         reagentSet.add(Unlabeled_sample);
 

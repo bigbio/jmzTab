@@ -1,6 +1,7 @@
 package uk.ac.ebi.pride.jmztab.model;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.BAR;
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
@@ -14,7 +15,7 @@ import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
  * @since 23/05/13
  */
 public class Publication extends IndexedElement {
-    private SplitList<PublicationItem> itemList = new SplitList<PublicationItem>(BAR);
+    private SplitList<PublicationItem> itemList = new SplitList<>(BAR);
 
     /**
      * Create a publication object.
@@ -68,7 +69,7 @@ public class Publication extends IndexedElement {
 
         Publication that = (Publication) o;
 
-        return itemList != null ? itemList.equals(that.itemList) : that.itemList == null;
+        return Objects.equals(itemList, that.itemList);
     }
 
     @Override

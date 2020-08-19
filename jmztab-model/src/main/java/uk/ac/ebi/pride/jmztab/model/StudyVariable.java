@@ -17,8 +17,8 @@ import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.STUDY_VARIABLE_DESCR
  */
 public class StudyVariable extends IndexedElement {
     private String description;
-    private SortedMap<Integer, Assay> assayMap = new TreeMap<Integer, Assay>();
-    private SortedMap<Integer, Sample> sampleMap = new TreeMap<Integer, Sample>();
+    private SortedMap<Integer, Assay> assayMap = new TreeMap<>();
+    private SortedMap<Integer, Sample> sampleMap = new TreeMap<>();
 
     /**
      * Create a study_variable[id] in metadata section.

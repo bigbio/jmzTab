@@ -1,11 +1,9 @@
-package uk.ac.ebi.pride.jmztab;
+package uk.ac.ebi.pride.jmztab.utils;
 
 import org.apache.commons.cli.*;
 import uk.ac.ebi.pride.data.util.MassSpecFileFormat;
 import uk.ac.ebi.pride.jmztab.model.MZTabFile;
 import uk.ac.ebi.pride.jmztab.model.MZTabUtils;
-import uk.ac.ebi.pride.jmztab.utils.MZTabFileConverter;
-import uk.ac.ebi.pride.jmztab.utils.MZTabFileParser;
 import uk.ac.ebi.pride.jmztab.utils.errors.MZTabErrorList;
 import uk.ac.ebi.pride.jmztab.utils.errors.MZTabErrorType;
 import uk.ac.ebi.pride.jmztab.utils.errors.MZTabErrorTypeMap;

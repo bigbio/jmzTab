@@ -17,7 +17,7 @@ public class Assay extends IndexedElement {
     private Param quantificationReagent;
     private Sample sample;
     private MsRun msRun;
-    private SortedMap<Integer, AssayQuantificationMod> quantificationModMap = new TreeMap<Integer, AssayQuantificationMod>();
+    private SortedMap<Integer, AssayQuantificationMod> quantificationModMap = new TreeMap<>();
 
     public Assay(int id) {
         super(MetadataElement.ASSAY, id);

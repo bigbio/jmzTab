@@ -2,6 +2,7 @@ package uk.ac.ebi.pride.jmztab.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.NEW_LINE;
 import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.*;
@@ -19,7 +20,7 @@ import static uk.ac.ebi.pride.jmztab.model.MetadataProperty.*;
 public class Instrument extends IndexedElement {
     private Param name;
     private Param source;
-    private List<Param> analyzerList = new ArrayList<Param>();
+    private List<Param> analyzerList = new ArrayList<>();
     private Param detector;
 
     /**
@@ -126,9 +127,9 @@ public class Instrument extends IndexedElement {
 
         Instrument that = (Instrument) o;
 
-        if (analyzerList != null ? !analyzerList.equals(that.analyzerList) : that.analyzerList != null) return false;
-        if (detector != null ? !detector.equals(that.detector) : that.detector != null) return false;
-        return name.equals(that.name) && (source != null ? source.equals(that.source) : that.source == null);
+        if (!Objects.equals(analyzerList, that.analyzerList)) return false;
+        if (!Objects.equals(detector, that.detector)) return false;
+        return name.equals(that.name) && (Objects.equals(source, that.source));
     }
 
     @Override

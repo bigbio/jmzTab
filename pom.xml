@@ -28,7 +28,6 @@
 
     <modules>
         <module>jmztab-model</module>
-        <module>jmztab-cli</module>
         <module>jmztab-converters</module>
         <module>jmztab-util</module>
     </modules>

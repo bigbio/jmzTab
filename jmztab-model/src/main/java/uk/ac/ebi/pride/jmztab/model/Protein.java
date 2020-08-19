@@ -156,7 +156,7 @@ public class Protein extends MZTabRecord {
 
         SplitList<Param> params = getSearchEngine();
         if (params == null) {
-            params = new SplitList<Param>(BAR);
+            params = new SplitList<>(BAR);
             setSearchEngine(params);
         }
 
@@ -464,7 +464,7 @@ public class Protein extends MZTabRecord {
 
         SplitList<String> ambiguityMembers = getAmbiguityMembers();
         if (ambiguityMembers == null) {
-            ambiguityMembers = new SplitList<String>(COMMA);
+            ambiguityMembers = new SplitList<>(COMMA);
             setAmbiguityMembers(ambiguityMembers);
         }
 
@@ -528,7 +528,7 @@ public class Protein extends MZTabRecord {
 
         SplitList<Modification> modList = getModifications();
         if (modList == null) {
-            modList = new SplitList<Modification>(COMMA);
+            modList = new SplitList<>(COMMA);
             setModifications(modList);
         }
 
@@ -608,7 +608,7 @@ public class Protein extends MZTabRecord {
 
         SplitList<String> goTerms = getGOTerms();
         if (goTerms == null) {
-            goTerms = new SplitList<String>(BAR);
+            goTerms = new SplitList<>(BAR);
             setGOTerms(goTerms);
         }
 

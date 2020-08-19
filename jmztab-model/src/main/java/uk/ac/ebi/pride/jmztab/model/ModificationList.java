@@ -9,7 +9,7 @@ import static uk.ac.ebi.pride.jmztab.model.MZTabConstants.COMMA;
  * @since 13/02/13
  */
 public class ModificationList {
-    private SplitList<Modification> modList = new SplitList<Modification>(COMMA);
+    private SplitList<Modification> modList = new SplitList<>(COMMA);
 
     /**
      * Add a {@link Modification} to list.
