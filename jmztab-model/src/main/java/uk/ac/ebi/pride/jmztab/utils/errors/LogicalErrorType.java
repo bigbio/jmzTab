@@ -2,7 +2,6 @@ package uk.ac.ebi.pride.jmztab.utils.errors;
 
 /**
  * Reporting errors related to the logical relationships among the different sections in a file.
- * Reference: http://code.google.com/p/mztab/wiki/jmzTab_message for details.
  *
  * @author qingwei
  * @since 29/01/13
@@ -29,7 +28,7 @@ public class LogicalErrorType extends MZTabErrorType {
     public static MZTabErrorType NotDefineInMetadata = createError(Category.Logical, "NotDefineInMetadata");
     public static MZTabErrorType NotDefineInHeader = createError(Category.Logical, "NotDefineInHeader");
     public static MZTabErrorType DuplicationDefine = createError(Category.Logical, "DuplicationDefine");
-    public static MZTabErrorType DuplicationAccession = createError(Category.Logical, "DuplicationAccession");
+    public static MZTabErrorType DuplicationAccession = createWarn(Category.Logical, "DuplicationAccession");
     public static MZTabErrorType AssayRefs = createError(Category.Logical, "AssayRefs");
 
     public static MZTabErrorType ProteinCoverage = createError(Category.Logical, "ProteinCoverage");

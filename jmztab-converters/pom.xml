@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>uk.ac.ebi.pride</groupId>
+        <groupId>io.github.bigbio.external</groupId>
         <artifactId>jmztab-modular</artifactId>
         <version>3.0.10-SNAPSHOT</version>
     </parent>
@@ -139,7 +139,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>${project.artifactId}-${project.version}-bin</finalName>
+                    <finalName>jmzTabValidator-${project.version}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>

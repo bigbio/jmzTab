@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
  * @since 16/09/13
  */
 public class ProteinValidateTest {
+
     private Logger logger = LoggerFactory.getLogger(ProteinValidateTest.class);
 
     private MZTabErrorList errorList;

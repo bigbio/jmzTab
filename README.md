@@ -1,4 +1,4 @@
-## jmzTab: Java library for reading and writing mzTab
+# jmzTab: Java library for reading and writing mzTab
 
 The jmzTab library provide reading and writing capabilities, as well as supporting the validation of mzTab and the conversion of PRIDE XML and mzIdentML files to mzTab. Currently, the library contains converter for
 

@@ -72,7 +72,7 @@ public class MZTabError {
     }
 
     /**
-     * @return {@link MZTabErrorType}
+     * @return MZTabErrorType
      *
      * @see FormatErrorType
      * @see LogicalErrorType
