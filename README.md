@@ -1,4 +1,4 @@
-## jmzTab: Java library for reading and writing mzTab
+# jmzTab: Java library for reading and writing mzTab
 
 The jmzTab library provide reading and writing capabilities, as well as supporting the validation of mzTab and the conversion of PRIDE XML and mzIdentML files to mzTab. Currently, the library contains converter for
 
@@ -10,21 +10,16 @@ The jmzTab library is divided in two modules:
 
   * jmztab-modular-converters: jmzTab utilities to convert PRIDE XML and mzIdentML files to mzTab [jmztab-modular-converters.zip (latest version)](http://www.ebi.ac.uk/pride/resources/tools/jmztab/latest/jmztab-modular-converters.zip)
 
-## Tools
+## jmzTabValidator
 
-As examples of implementation, two [Utilities](https://github.com/PRIDE-Utilities/jmzTab/wiki/jmzTab-Utilities) were developed:
+  * jmzTabValidator, a command line interface (CLI), which provides a more flexible way of processing mzTab files in a batch mode. It also has validation and conversion functionality.
 
-  * mzTabCLI, a command line interface (CLI), which provides a more flexible way of processing mzTab files in a batch mode. It also has validation and conversion functionality.
+Currently, the tool can be downloaded from the releases section:
 
-Currently, both tools can be downloaded from:
+  * [ jzmTabValidator Release]()
 
-  * [jmztab-modular-cli.zip (latest version)](http://www.ebi.ac.uk/pride/resources/tools/jmztab/latest/jmztab-modular-cli.zip)
-
-In [mzTabCLI Demo](https://github.com/PRIDE-Utilities/jmzTab/blob/master/etcs/command_demo.bat), we provide a couple of examples to help user call command line interface quickly.
-
-  * print command line help
 ```
-java -jar mzTabCLI.jar -help
+java -jar jmzTabValidator-{version}.jar -help
 ```
 The output will like following:
 ```
@@ -35,8 +30,6 @@ usage: jmztab
  -message code=<code>             print Error/Warn detail message based on code number.
  -outFile <arg>              Dump output data to the given file. If not set, output data will be dumped on stdout.
 ```
-
-More information about the tools can be found in the [Wiki](https://github.com/PRIDE-Utilities/jmzTab/wiki/jmzTab-Utilities)
 
 ## Using the jmzTab library
 

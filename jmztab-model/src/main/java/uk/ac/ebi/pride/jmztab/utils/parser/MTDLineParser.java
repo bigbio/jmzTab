@@ -340,10 +340,8 @@ public class MTDLineParser extends MZTabLineParser {
                         }
                         metadata.addSoftwareParam(id, param);
                     } else {
-                        switch (property) {
-                            case SOFTWARE_SETTING:
-                                metadata.addSoftwareSetting(id, valueLabel);
-                                break;
+                        if (property == MetadataProperty.SOFTWARE_SETTING) {
+                            metadata.addSoftwareSetting(id, valueLabel);
                         }
                     }
 
@@ -443,35 +441,29 @@ public class MTDLineParser extends MZTabLineParser {
                     break;
                 case PROTEIN:
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
-                        case PROTEIN_QUANTIFICATION_UNIT:
-                            if (metadata.getProteinQuantificationUnit() != null) {
-                                throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
-                            }
-                            metadata.setProteinQuantificationUnit(checkParam(defineLabel, valueLabel));
-                            break;
+                    if ((property != null ? property : null) == MetadataProperty.PROTEIN_QUANTIFICATION_UNIT) {
+                        if (metadata.getProteinQuantificationUnit() != null) {
+                            throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
+                        }
+                        metadata.setProteinQuantificationUnit(checkParam(defineLabel, valueLabel));
                     }
                     break;
                 case PEPTIDE:
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
-                        case PEPTIDE_QUANTIFICATION_UNIT:
-                            if (metadata.getPeptideQuantificationUnit() != null) {
-                                throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
-                            }
-                            metadata.setPeptideQuantificationUnit(checkParam(defineLabel, valueLabel));
-                            break;
+                    if ((property != null ? property : null) == MetadataProperty.PEPTIDE_QUANTIFICATION_UNIT) {
+                        if (metadata.getPeptideQuantificationUnit() != null) {
+                            throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
+                        }
+                        metadata.setPeptideQuantificationUnit(checkParam(defineLabel, valueLabel));
                     }
                     break;
                 case SMALL_MOLECULE:
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
-                        case SMALL_MOLECULE_QUANTIFICATION_UNIT:
-                            if (metadata.getSmallMoleculeQuantificationUnit() != null) {
-                                throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
-                            }
-                            metadata.setSmallMoleculeQuantificationUnit(checkParam(defineLabel, valueLabel));
-                            break;
+                    if ((property != null ? property : null) == MetadataProperty.SMALL_MOLECULE_QUANTIFICATION_UNIT) {
+                        if (metadata.getSmallMoleculeQuantificationUnit() != null) {
+                            throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
+                        }
+                        metadata.setSmallMoleculeQuantificationUnit(checkParam(defineLabel, valueLabel));
                     }
                     break;
                 case MS_RUN:
@@ -565,24 +557,21 @@ public class MTDLineParser extends MZTabLineParser {
                         // quantification modification. For example: assay[1]-quantification_mod[1], assay[1]-quantification_mod[1]-site
                         id = checkIndex(defineLabel, matcher.group(3));
                         MetadataSubElement subElement = MetadataSubElement.findSubElement(element, matcher.group(5));
-                        switch (subElement) {
-                            case ASSAY_QUANTIFICATION_MOD:
-                                int modId = checkIndex(defineLabel, matcher.group(7));
-                                property = checkProperty(subElement, matcher.group(9));
-                                if (property == null) {
-                                    metadata.addAssayQuantificationModParam(id, modId, checkParam(defineLabel, valueLabel));
-                                } else {
-                                    switch (property) {
-                                        case ASSAY_QUANTIFICATION_MOD_SITE:
-                                            metadata.addAssayQuantificationModSite(id, modId, valueLabel);
-                                            break;
-                                        case ASSAY_QUANTIFICATION_MOD_POSITION:
-                                            metadata.addAssayQuantificationModPosition(id, modId, valueLabel);
-                                            break;
-                                    }
+                        if (subElement == MetadataSubElement.ASSAY_QUANTIFICATION_MOD) {
+                            int modId = checkIndex(defineLabel, matcher.group(7));
+                            property = checkProperty(subElement, matcher.group(9));
+                            if (property == null) {
+                                metadata.addAssayQuantificationModParam(id, modId, checkParam(defineLabel, valueLabel));
+                            } else {
+                                switch (property) {
+                                    case ASSAY_QUANTIFICATION_MOD_SITE:
+                                        metadata.addAssayQuantificationModSite(id, modId, valueLabel);
+                                        break;
+                                    case ASSAY_QUANTIFICATION_MOD_POSITION:
+                                        metadata.addAssayQuantificationModPosition(id, modId, valueLabel);
+                                        break;
                                 }
-
-                                break;
+                            }
                         }
                     }
 
