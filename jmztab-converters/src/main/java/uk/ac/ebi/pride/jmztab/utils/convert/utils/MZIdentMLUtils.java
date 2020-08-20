@@ -77,7 +77,7 @@ public final class MZIdentMLUtils {
         if (cvParams == null) {
             throw new IllegalArgumentException("Input argument for getSearchEngineScoreTypes can not be null");
         }
-        List<SearchEngineParam> searchEngines = new ArrayList<SearchEngineParam>();
+        List<SearchEngineParam> searchEngines = new ArrayList<>();
         for(CvParam param: cvParams)
             if(SearchEngineScoreParam.getSearchEngineScoreParamByAccession(param.getAccession()) != null){
                 SearchEngineScoreParam searchEngineScoreParam = SearchEngineScoreParam.getSearchEngineScoreParamByAccession(param.getAccession());
@@ -90,7 +90,7 @@ public final class MZIdentMLUtils {
 
 
     public static List<SearchEngineScoreParam> getSearchEngineScoreTerm(List<CvParam> params) {
-        List<SearchEngineScoreParam> scores = new ArrayList<SearchEngineScoreParam>();
+        List<SearchEngineScoreParam> scores = new ArrayList<>();
         if (params != null)
             for (CvParam term : params)
                 if (SearchEngineScoreParam.getSearchEngineScoreParamByAccession(term.getAccession()) != null)

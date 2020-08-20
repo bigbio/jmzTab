@@ -14,7 +14,9 @@ import java.net.URL;
  * @author qingwei
  * @since 17/09/13
  */
+@Deprecated
 public class ConvertFilesRun {
+
     private static Logger logger = LoggerFactory.getLogger(ConvertPrideXMLFile.class);
 
     private void convert(File inFile, File outFile) throws Exception {

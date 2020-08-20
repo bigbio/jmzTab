@@ -498,11 +498,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(matcher.group(1).replaceAll("-", "&minus;"));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
     }
@@ -614,11 +614,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(matcher.group(1).replaceAll(",", "\t"));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
     }
@@ -636,11 +636,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(matcher.group(1).replaceAll("\t", ","));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
     }
@@ -657,11 +657,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(matcher.group(1).replaceAll("-", "\t"));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
 
@@ -673,7 +673,7 @@ public class MZTabUtils {
         if (pos > -1) {
             return string.substring(0, pos)
                     + replacement
-                    + string.substring(pos + toReplace.length(), string.length());
+                    + string.substring(pos + toReplace.length());
         }
         return string;
     }
@@ -689,11 +689,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(replaceLast(matcher.group(1),"-", "\t"));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
 
@@ -712,11 +712,11 @@ public class MZTabUtils {
         int end;
         while (matcher.find()) {
             end = matcher.start(1);
-            sb.append(target.substring(start, end));
+            sb.append(target, start, end);
             sb.append(matcher.group(1).replaceAll("\t", "-"));
             start = matcher.end(1);
         }
-        sb.append(target.substring(start, target.length()));
+        sb.append(target.substring(start));
 
         return sb.toString();
     }

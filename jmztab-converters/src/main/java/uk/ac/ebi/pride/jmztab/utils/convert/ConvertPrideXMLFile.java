@@ -50,7 +50,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
     private MZTabColumnFactory proteinColumnFactory;
     private MZTabColumnFactory psmColumnFactory;
 
-    private SortedMap<String, List<Protein>> accessionProteinMap = new TreeMap<String, List<Protein>>();
+    private SortedMap<String, List<Protein>> accessionProteinMap = new TreeMap<>();
 
 
 
@@ -212,7 +212,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
                     // already added and we need to merge the information with the original
                     List<Protein> proteinList = accessionProteinMap.get(protein.getAccession());
                     if (proteinList == null) {
-                        proteinList = new ArrayList<Protein>();
+                        proteinList = new ArrayList<>();
                     }
                     proteinList.add(protein);
                     accessionProteinMap.put(protein.getAccession(), proteinList);
@@ -591,7 +591,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
                 continue;
             }
 
-            List<PublicationItem> items = new ArrayList<PublicationItem>();
+            List<PublicationItem> items = new ArrayList<>();
 
             // check if there's a DOI
             String doi = getPublicationAccession(param, CvTermReference.PRIDE_REFERENCE_DOI.getName());
@@ -997,9 +997,9 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
 
         // get the number of psms and distinct peptides
         List<PeptideItem> items = identification.getPeptideItem();
-        List<String> allPeptideList = new ArrayList<String>();
+        List<String> allPeptideList = new ArrayList<>();
         // sequence + modifications + charge
-        HashSet<String> distinctPeptideList = new HashSet<String>();
+        HashSet<String> distinctPeptideList = new HashSet<>();
         for (PeptideItem item : items) {
             List<ModificationItem> modList = item.getModificationItem();
             StringBuilder sb = new StringBuilder();
@@ -1158,7 +1158,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
         }
 
         // this only makes sense if we have a list of params and an accession!
-        List<String> ambiguityMembers = new ArrayList<String>();
+        List<String> ambiguityMembers = new ArrayList<>();
         for (uk.ac.ebi.pride.jaxb.model.CvParam p : param.getCvParam()) {
             if (accession.equals(p.getAccession())) {
                 ambiguityMembers.add(p.getValue());
@@ -1171,12 +1171,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
 
     private void loadModifications(Protein protein, List<PeptideItem> items) {
 
-        Set<Modification> modifications = new TreeSet<Modification>(new Comparator<Modification>() {
-            @Override
-            public int compare(Modification o1, Modification o2) {
-                return o1.toString().compareToIgnoreCase(o2.toString());
-            }
-        });
+        Set<Modification> modifications = new TreeSet<>((o1, o2) -> o1.toString().compareToIgnoreCase(o2.toString()));
 
         for (PeptideItem item : items) {
             int seqLength = 0;
@@ -1232,7 +1227,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
      */
     private List<PSM> loadPSMs(Identification identification) {
 
-        List<PSM> psmList = new ArrayList<PSM>();
+        List<PSM> psmList = new ArrayList<>();
 
         CVParam decoyPSM = ConverterCVParam.MS_DECOY_PEPTIDE.getParam();
         String header = CVParamOptionColumn.getHeader(null, decoyPSM);
@@ -1368,7 +1363,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
                         for (ModificationItem modificationItem : peptideItem.getModificationItem()) {
                             int location = modificationItem.getModLocation().intValue();
                             Double mass = Double.parseDouble(modificationItem.getModMonoDelta().get(0));
-                            List<Double> monoMassList = new ArrayList<Double>();
+                            List<Double> monoMassList = new ArrayList<>();
                             monoMassList.add(mass);
                             peptide.addModification(location, new PTModification("", "", "", monoMassList, null));
 
@@ -1555,7 +1550,7 @@ public class ConvertPrideXMLFile extends ConvertProvider<File, Void> {
             value = value.trim();
 
             // define a reserved character list.
-            List<String> reserveCharList = new ArrayList<String>();
+            List<String> reserveCharList = new ArrayList<>();
 
             reserveCharList.add("\n");
             reserveCharList.add("\t");
