@@ -17,9 +17,6 @@ import java.util.SortedMap;
  * Convert third-party data source to mzTab file, and do whole {@link MZTabFile} consistency check.
  * Currently, only PRIDE XML v2.1 and MZIdentML v1.0 has been integrated into this framework.
  *
- * @see uk.ac.ebi.pride.jmztab.MZTabInspector
- * @see uk.ac.ebi.pride.jmztab.MZTabCommandLine
- *
  * @author qingwei
  * @author ntoro
  * @since 17/09/13

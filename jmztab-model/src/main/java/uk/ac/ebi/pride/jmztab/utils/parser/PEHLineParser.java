@@ -113,7 +113,7 @@ public class PEHLineParser extends MZTabHeaderLineParser {
 
     private Map<Integer, String> generateHeaderPhysPositionToOrderMap(String[] items) {
         Integer physicalPosition;
-        Map<Integer, String> physicalPositionToOrder = new LinkedHashMap<Integer, String>();
+        Map<Integer, String> physicalPositionToOrder = new LinkedHashMap<>();
         int order = 0;
         boolean firstBSES = true; //BEST_SEARCH_ENGINE_SCORE
         boolean firstSES = true;  //SEARCH_ENGINE_SCORE
@@ -210,7 +210,7 @@ public class PEHLineParser extends MZTabHeaderLineParser {
         MZTabDescription.Type type = metadata.getMZTabType();
 
         //mandatory columns
-        List<String> mandatoryColumnHeaders = new ArrayList<String>();
+        List<String> mandatoryColumnHeaders = new ArrayList<>();
         mandatoryColumnHeaders.add(SEQUENCE.getName());
         mandatoryColumnHeaders.add(ACCESSION.getName());
         mandatoryColumnHeaders.add(UNIQUE.getName());

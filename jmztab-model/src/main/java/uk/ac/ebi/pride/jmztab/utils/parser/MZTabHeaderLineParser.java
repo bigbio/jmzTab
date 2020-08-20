@@ -83,7 +83,7 @@ public abstract class MZTabHeaderLineParser extends MZTabLineParser {
 
 
     /**
-     * Refine optional columns based one {@link MZTabDescription#mode} and {@link MZTabDescription#type}
+     * Refine optional columns based one {@link MZTabDescription} and {@link MZTabDescription}
      * These re-validate operation will called in {@link #refine()} method.
      */
     protected void refineOptionalColumn(MZTabDescription.Mode mode, MZTabDescription.Type type,

@@ -54,22 +54,22 @@ public abstract class ConvertProvider<T, V> {
 
         this.proteinColumnFactory = convertProteinColumnFactory();
         if (this.proteinColumnFactory != null) {
-            proteins = new ArrayList<Protein>();
+            proteins = new ArrayList<>();
         }
 
         this.peptideColumnFactory = convertPeptideColumnFactory();
         if (this.peptideColumnFactory != null) {
-            peptides = new ArrayList<Peptide>();
+            peptides = new ArrayList<>();
         }
 
         this.psmColumnFactory = convertPSMColumnFactory();
         if (this.psmColumnFactory != null) {
-            psms = new ArrayList<PSM>();
+            psms = new ArrayList<>();
         }
 
         this.smallMoleculeColumnFactory = convertSmallMoleculeColumnFactory();
         if (this.smallMoleculeColumnFactory != null) {
-            smallMolecules = new ArrayList<SmallMolecule>();
+            smallMolecules = new ArrayList<>();
         }
     }
 

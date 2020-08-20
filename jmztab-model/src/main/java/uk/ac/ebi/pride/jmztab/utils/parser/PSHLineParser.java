@@ -129,7 +129,7 @@ public class PSHLineParser extends MZTabHeaderLineParser {
 
     private Map<Integer, String> generateHeaderPhysPositionToOrderMap(String[] items) {
         Integer physicalPosition;
-        Map<Integer, String> physicalPositionToOrder = new LinkedHashMap<Integer, String>();
+        Map<Integer, String> physicalPositionToOrder = new LinkedHashMap<>();
         int order = 0;
         boolean firstSES = true;  //SEARCH_ENGINE_SCORE
         String columnHeader;
@@ -168,7 +168,7 @@ public class PSHLineParser extends MZTabHeaderLineParser {
         MZTabDescription.Type type = metadata.getMZTabType();
 
         //mandatory columns
-        List<String> mandatoryColumnHeaders = new ArrayList<String>();
+        List<String> mandatoryColumnHeaders = new ArrayList<>();
         mandatoryColumnHeaders.add(SEQUENCE.getName());
         mandatoryColumnHeaders.add(PSM_ID.getName());
         mandatoryColumnHeaders.add(ACCESSION.getName());

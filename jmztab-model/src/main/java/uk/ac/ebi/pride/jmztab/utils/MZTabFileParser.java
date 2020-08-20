@@ -180,11 +180,11 @@ public class MZTabFileParser {
         SMLLineParser smlParser = null;
 
 
-        SortedMap<Integer, Comment> commentMap = new TreeMap<Integer, Comment>();
-        SortedMap<Integer, Protein> proteinMap = new TreeMap<Integer, Protein>();
-        SortedMap<Integer, Peptide> peptideMap = new TreeMap<Integer, Peptide>();
-        SortedMap<Integer, PSM> psmMap = new TreeMap<Integer, PSM>();
-        SortedMap<Integer, SmallMolecule> smallMoleculeMap = new TreeMap<Integer, SmallMolecule>();
+        SortedMap<Integer, Comment> commentMap = new TreeMap<>();
+        SortedMap<Integer, Protein> proteinMap = new TreeMap<>();
+        SortedMap<Integer, Peptide> peptideMap = new TreeMap<>();
+        SortedMap<Integer, PSM> psmMap = new TreeMap<>();
+        SortedMap<Integer, SmallMolecule> smallMoleculeMap = new TreeMap<>();
 
         PositionMapping prtPositionMapping = null;
         PositionMapping pepPositionMapping = null;

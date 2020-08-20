@@ -19,7 +19,7 @@ import static uk.ac.ebi.pride.jmztab.model.ProteinColumn.*;
  */
 public class PRTLineParser extends MZTabDataLineParser {
 
-    private Set<String> accessionSet = new HashSet<String>();
+    private Set<String> accessionSet = new HashSet<>();
     private Protein protein = null;
 
     public PRTLineParser(MZTabColumnFactory factory, PositionMapping positionMapping,

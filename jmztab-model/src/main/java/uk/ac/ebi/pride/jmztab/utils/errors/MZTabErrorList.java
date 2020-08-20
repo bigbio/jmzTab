@@ -14,7 +14,7 @@ import static uk.ac.ebi.pride.jmztab.utils.MZTabProperties.MAX_ERROR_COUNT;
 /**
  * A limit max capacity list, if contains a couple of {@link MZTabError} objects.
  * If overflow, system will raise {@link MZTabErrorOverflowException}. Besides this, during
- * add a new {@link MZTabError} object, it's {@link MZTabErrorType#level} SHOULD equal or
+ * add a new {@link MZTabError} object, it's {@link MZTabErrorType} SHOULD equal or
  * great than its level setting.
  *
  * @author qingwei
@@ -53,7 +53,7 @@ public class MZTabErrorList {
     public MZTabErrorList(MZTabErrorType.Level level, int maxErrorCount) {
         this.level = level == null ? MZTabErrorType.Level.Error : level;
         this.maxErrorCount = maxErrorCount>=0?maxErrorCount:0;
-        this.errorList = new ArrayList<MZTabError>(this.maxErrorCount);
+        this.errorList = new ArrayList<>(this.maxErrorCount);
     }
 
     /**
@@ -67,7 +67,7 @@ public class MZTabErrorList {
     /**
      * A limit max capacity list, if contains a couple of {@link MZTabError} objects.
      * If overflow, system will raise {@link MZTabErrorOverflowException}. Besides this, during
-     * add a new {@link MZTabError} object, it's {@link MZTabErrorType#level} SHOULD equal or
+     * add a new {@link MZTabError} object, it's {@link MZTabErrorType} SHOULD equal or
      * greater than its level setting.
      *
      * @param error SHOULD NOT set null
@@ -104,7 +104,7 @@ public class MZTabErrorList {
     }
 
     /**
-     * @return level of errors reported {@link MZTabErrorType#level}
+     * @return level of errors reported {@link MZTabErrorType}
      */
     public MZTabErrorType.Level getLevel() {
         return level;
@@ -112,7 +112,7 @@ public class MZTabErrorList {
 
     /**
      * Define the level of the errors that are going to be store in the list. The incoming errors with an equal or highest level will be stored.
-     * @param level {@link MZTabErrorType#level}
+     * @param level {@link MZTabErrorType}
      */
     public void setLevel(MZTabErrorType.Level level) {
         this.level = level;

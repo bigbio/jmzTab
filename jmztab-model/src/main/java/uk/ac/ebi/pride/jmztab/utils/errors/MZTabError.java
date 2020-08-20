@@ -45,7 +45,7 @@ public class MZTabError {
 
         this.lineNumber = lineNumber;
 
-        List<String> valueList = new ArrayList<String>();
+        List<String> valueList = new ArrayList<>();
         for (String value : values) {
             valueList.add(value == null ? "" : value);
         }

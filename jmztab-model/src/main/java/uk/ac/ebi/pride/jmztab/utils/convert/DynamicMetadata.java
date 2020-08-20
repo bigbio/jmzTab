@@ -112,39 +112,46 @@ public class DynamicMetadata implements PropertyChangeListener {
         SortedMap<Integer, Assay> assayMap = metadata.getAssayMap();
         SortedMap<Integer, StudyVariable> studyVariableMap = metadata.getStudyVariableMap();
 
-        if (evt.getPropertyName().equals(CHANGE_SAMPLE_INDEX)) {
-            Integer oldId = (Integer) evt.getOldValue();
-            Integer newId = (Integer) evt.getNewValue();
-            for (Assay assay : assayMap.values()) {
-                if (assay.getSample() != null && assay.getSample().getId().equals(oldId)) {
-                    assay.getSample().setId(newId);
-                }
+      switch (evt.getPropertyName()) {
+        case CHANGE_SAMPLE_INDEX: {
+          Integer oldId = (Integer) evt.getOldValue();
+          Integer newId = (Integer) evt.getNewValue();
+          for (Assay assay : assayMap.values()) {
+            if (assay.getSample() != null && assay.getSample().getId().equals(oldId)) {
+              assay.getSample().setId(newId);
             }
-            for (StudyVariable studyVariable : studyVariableMap.values()) {
-                Sample sample = studyVariable.getSampleMap().remove(oldId);
-                if (sample != null) {
-                    sample.setId(newId);
-                    studyVariable.getSampleMap().put(newId, sample);
-                }
+          }
+          for (StudyVariable studyVariable : studyVariableMap.values()) {
+            Sample sample = studyVariable.getSampleMap().remove(oldId);
+            if (sample != null) {
+              sample.setId(newId);
+              studyVariable.getSampleMap().put(newId, sample);
             }
-        } else if (evt.getPropertyName().equals(CHANGE_ASSAY_INDEX)) {
-            Integer oldId = (Integer) evt.getOldValue();
-            Integer newId = (Integer) evt.getNewValue();
-            for (StudyVariable studyVariable : studyVariableMap.values()) {
-                Assay assay = studyVariable.getAssayMap().remove(oldId);
-                if (assay != null) {
-                    assay.setId(newId);
-                    studyVariable.getAssayMap().put(newId, assay);
-                }
-            }
-        } else if (evt.getPropertyName().equals(CHANGE_MS_RUN_INDEX)) {
-            Integer oldId = (Integer) evt.getOldValue();
-            Integer newId = (Integer) evt.getNewValue();
-            for (Assay assay : assayMap.values()) {
-                if (assay.getMsRun() != null && assay.getMsRun().getId().equals(oldId)) {
-                    assay.getMsRun().setId(newId);
-                }
-            }
+          }
+          break;
         }
+        case CHANGE_ASSAY_INDEX: {
+          Integer oldId = (Integer) evt.getOldValue();
+          Integer newId = (Integer) evt.getNewValue();
+          for (StudyVariable studyVariable : studyVariableMap.values()) {
+            Assay assay = studyVariable.getAssayMap().remove(oldId);
+            if (assay != null) {
+              assay.setId(newId);
+              studyVariable.getAssayMap().put(newId, assay);
+            }
+          }
+          break;
+        }
+        case CHANGE_MS_RUN_INDEX: {
+          Integer oldId = (Integer) evt.getOldValue();
+          Integer newId = (Integer) evt.getNewValue();
+          for (Assay assay : assayMap.values()) {
+            if (assay.getMsRun() != null && assay.getMsRun().getId().equals(oldId)) {
+              assay.getMsRun().setId(newId);
+            }
+          }
+          break;
+        }
+      }
     }
 }

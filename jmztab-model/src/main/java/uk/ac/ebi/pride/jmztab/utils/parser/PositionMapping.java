@@ -18,7 +18,7 @@ import java.util.TreeMap;
  */
 public class PositionMapping {
     // physicalPosition <--> logicalPosition
-    private SortedMap<Integer, String> mappings = new TreeMap<Integer, String>();
+    private SortedMap<Integer, String> mappings = new TreeMap<>();
 
     public PositionMapping(MZTabColumnFactory factory, String headerLine) {
         this(factory, headerLine.split("\t"));
@@ -68,7 +68,7 @@ public class PositionMapping {
      * operation by logical position to physical position.
      */
     public SortedMap<String, Integer> reverse() {
-        SortedMap<String, Integer> reverseMappings = new TreeMap<String, Integer>();
+        SortedMap<String, Integer> reverseMappings = new TreeMap<>();
 
         String logicalPosition;
         for (Integer physicalPosition : mappings.keySet()) {
