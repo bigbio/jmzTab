@@ -12,8 +12,6 @@ The jmzTab library is divided in two modules:
 
 ## jmzTabValidator
 
-
-
   * jmzTabValidator, a command line interface (CLI), which provides a more flexible way of processing mzTab files in a batch mode. It also has validation and conversion functionality.
 
 Currently, the tool can be downloaded from the releases section:
