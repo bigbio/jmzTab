@@ -14,7 +14,7 @@
         <jaxb-pride-jaxb.version>1.0.22</jaxb-pride-jaxb.version>
         <pride-px-submission-core.version>2.0.15</pride-px-submission-core.version>
         <jmzidml-jmzidentml.version>1.2.11</jmzidml-jmzidentml.version>
-        <commons-cli.version>1.2</commons-cli.version>
+        <commons-cli.version>1.4</commons-cli.version>
         <lombock.version>1.18.2</lombock.version>
         <slf4j.version>1.7.25</slf4j.version>
         <java.version>1.8</java.version>
