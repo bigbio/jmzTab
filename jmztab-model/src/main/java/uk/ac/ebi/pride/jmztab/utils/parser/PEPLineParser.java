@@ -31,7 +31,9 @@ public class PEPLineParser extends MZTabDataLineParser {
 
         for (physicalPosition = 1; physicalPosition < items.length; physicalPosition++) {
             logicalPosition = positionMapping.get(physicalPosition);
+            System.out.println(logicalPosition + " " + physicalPosition);
             column = factory.getColumnMapping().get(logicalPosition);
+
 
             if (column != null) {
                 columnName = column.getName();

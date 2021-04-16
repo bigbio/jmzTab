@@ -105,6 +105,8 @@ public class PEHLineParser extends MZTabHeaderLineParser {
                     stableMapping.put(column.getLogicPosition(), column);
                 }
                 columnMapping.put(column.getLogicPosition(), column);
+            }else{
+                logger.debug("Column do not exist");
             }
         }
 
