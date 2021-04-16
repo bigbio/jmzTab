@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.github.bigbio.external</groupId>
         <artifactId>jmztab-modular</artifactId>
-        <version>3.0.10-SNAPSHOT</version>
+        <version>3.0.11-SNAPSHOT</version>
     </parent>
 
     <artifactId>jmztab-modular-converters</artifactId>
