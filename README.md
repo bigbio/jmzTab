@@ -95,4 +95,4 @@ For more information please see the [ReleaseNote](https://github.com/PRIDE-Utili
 
 ### Citation
 
-Perez-Riverol, Y. (2021). JmzTab: Java library to parse, validate and convert mztab proteomics files (Version 3.0.12) [Computer software]. https://doi.org/10.5281/zenodo.5213712 [![DOI](https://zenodo.org/badge/288845299.svg)](https://zenodo.org/badge/latestdoi/288845299)
+Perez-Riverol, Y. (2021). JmzTab 3.0: Java library to parse, validate and convert mztab proteomics files (Version 3.0.12) [Computer software]. https://doi.org/10.5281/zenodo.5213712 [![DOI](https://zenodo.org/badge/288845299.svg)](https://zenodo.org/badge/latestdoi/288845299)
