@@ -16,7 +16,7 @@ The jmzTab library is divided in two modules:
 
 Currently, the tool can be downloaded from the releases section:
 
-  * [ jzmTabValidator Release]()
+  * [jzmTabValidator Release](https://github.com/bigbio/jmzTab/releases/tag/v3.0.10)
 
 ```
 java -jar jmzTabValidator-{version}.jar -help
