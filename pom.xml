@@ -7,6 +7,12 @@
   <version>3.0.12</version>
   <description>JmzTab is a Java-based library to read mzTab files containing peptide/protein quantitative data</description>
   <url>https://github.com/bigbio/jmztab</url>
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>https://github.com/bigbio/jmzTab/blob/master/LICENSE</url>
+    </license>
+  </licenses>
 
   <properties>
     <lombock.version>1.18.2</lombock.version>
