@@ -29,8 +29,4 @@ jobs:
       run: mvn -B package
     - name: Copy artifacts
       run: mkdir staging && cp target/*.jar staging  && cp target/*.zip staging
-    - uses: actions/upload-artifact@v2
-      with:
-        name: jmzTab Build Package
-        path: staging
 
