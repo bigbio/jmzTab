@@ -4,7 +4,7 @@
   <groupId>io.github.bigbio.external</groupId>
   <artifactId>jmztab</artifactId>
   <name>jmztab: Java library to read Tab-delimited for proteomics quant data</name>
-  <version>3.0.12-SNAPSHOT</version>
+  <version>3.0.12</version>
   <description>JmzTab is a Java-based library to read mzTab files containing peptide/protein quantitative data</description>
   <url>https://github.com/bigbio/jmztab</url>
 
