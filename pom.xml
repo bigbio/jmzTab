@@ -14,6 +14,18 @@
     </license>
   </licenses>
 
+  <developers>
+    <developer>
+      <id>ypriverol</id>
+      <name>Yasset Perez-Riverol</name>
+      <email>ypriverol@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+        <role>Project Leader</role>
+      </roles>
+    </developer>
+  </developers>
+
   <properties>
     <lombock.version>1.18.2</lombock.version>
     <slf4j.version>1.7.25</slf4j.version>
