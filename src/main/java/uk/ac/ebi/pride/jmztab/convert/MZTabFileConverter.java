@@ -8,6 +8,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.MZTabError;
 import uk.ac.ebi.pride.jmztab.utils.errors.MZTabErrorList;
 
 import java.io.File;
+import java.util.Map;
 import java.util.SortedMap;
 
 /**
@@ -93,18 +94,19 @@ public class MZTabFileConverter {
                 if (metadata.getQuantificationMethod() == null) {
                     errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "quantification_method", mode.toString(), type.toString()));
                 }
-                for (Integer id : assayMap.keySet()) {
-                    if (assayMap.get(id).getMsRun() == null) {
+                for (Map.Entry<Integer, Assay> entry : assayMap.entrySet()) {
+                    Integer id = entry.getKey();
+                    if (entry.getValue().getMsRun() == null) {
                         errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "assay[" + id + "]-ms_run_ref", mode.toString(), type.toString()));
                     }
-                    if (assayMap.get(id).getQuantificationReagent() == null) {
+                    if (entry.getValue().getQuantificationReagent() == null) {
                         errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "assay[" + id + "]-quantification_reagent", mode.toString(), type.toString()));
                     }
                 }
                 if (svMap.size() > 0 && assayMap.size() > 0) {
-                    for (Integer id : svMap.keySet()) {
-                        if (svMap.get(id).getAssayMap().size() == 0) {
-                            errorList.add(new MZTabError(LogicalErrorType.AssayRefs, -1, "study_variable[" + id + "]-assay_refs"));
+                    for (Map.Entry<Integer, StudyVariable> entry : svMap.entrySet()) {
+                        if (entry.getValue().getAssayMap().size() == 0) {
+                            errorList.add(new MZTabError(LogicalErrorType.AssayRefs, -1, "study_variable[" + entry.getKey() + "]-assay_refs"));
                         }
                     }
                 }
@@ -116,9 +118,9 @@ public class MZTabFileConverter {
         if (metadata.getDescription() == null) {
             errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "description", mode.toString(), type.toString()));
         }
-        for (Integer id : runMap.keySet()) {
-            if (runMap.get(id).getLocation() == null) {
-                errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "ms_run[" + id + "]-location", mode.toString(), type.toString()));
+        for (Map.Entry<Integer, MsRun> entry : runMap.entrySet()) {
+            if (entry.getValue().getLocation() == null) {
+                errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "ms_run[" + entry.getKey() + "]-location", mode.toString(), type.toString()));
             }
         }
 
@@ -133,9 +135,9 @@ public class MZTabFileConverter {
         }
 
         if (type == MZTabDescription.Type.Quantification) {
-            for (Integer id : svMap.keySet()) {
-                if (svMap.get(id).getDescription() == null) {
-                    errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "study_variable[" + id + "]-description", mode.toString(), type.toString()));
+            for (Map.Entry<Integer, StudyVariable> entry : svMap.entrySet()) {
+                if (entry.getValue().getDescription() == null) {
+                    errorList.add(new MZTabError(LogicalErrorType.NotDefineInMetadata, -1, "study_variable[" + entry.getKey() + "]-description", mode.toString(), type.toString()));
                 }
             }
         }

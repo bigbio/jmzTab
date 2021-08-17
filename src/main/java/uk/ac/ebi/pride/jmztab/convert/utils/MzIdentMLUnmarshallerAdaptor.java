@@ -72,8 +72,8 @@ public class MzIdentMLUnmarshallerAdaptor extends MzIdentMLUnmarshaller {
                                    List<IndexElement> peptideEvidenceRefIndexElements,
                                    boolean proteinGroupPresent) {
 
-        for (String spectrumIdentResultId : spectrumIdentResultIdToIndexElements.keySet()) {
-            IndexElement spectrumIdentResultIndexElement = spectrumIdentResultIdToIndexElements.get(spectrumIdentResultId);
+        for (Map.Entry<String, IndexElement> entry : spectrumIdentResultIdToIndexElements.entrySet()) {
+            IndexElement spectrumIdentResultIndexElement = entry.getValue();
 
             Iterator<Map.Entry<String, IndexElement>> spectrumIdentItemElementEntryIterator = spectrumIdentItemIdToIndexElements.entrySet().iterator();
             while (spectrumIdentItemElementEntryIterator.hasNext()) {
@@ -81,7 +81,7 @@ public class MzIdentMLUnmarshallerAdaptor extends MzIdentMLUnmarshaller {
                 String spectrumIdentItemId = spectrumIdentItemElementEntry.getKey();
                 IndexElement spectrumIdentItemIndexElement = spectrumIdentItemElementEntry.getValue();
                 if (isParentIndexElement(spectrumIdentResultIndexElement, spectrumIdentItemIndexElement)) {
-                    Map<String, List<IndexElement>> spectrumIdentItemWithin = scannedIdMappings.computeIfAbsent(spectrumIdentResultId, k -> new HashMap<>());
+                    Map<String, List<IndexElement>> spectrumIdentItemWithin = scannedIdMappings.computeIfAbsent(entry.getKey(), k -> new HashMap<>());
 
                     if (proteinGroupPresent) {
                         spectrumIdentItemWithin.put(spectrumIdentItemId, null);

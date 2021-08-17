@@ -3,10 +3,7 @@ package uk.ac.ebi.pride.jmztab.utils.parser;
 import uk.ac.ebi.pride.jmztab.model.MZTabColumn;
 import uk.ac.ebi.pride.jmztab.model.MZTabColumnFactory;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Create and maintain a couple of mappings between physical position and logical position.
@@ -71,9 +68,9 @@ public class PositionMapping {
         SortedMap<String, Integer> reverseMappings = new TreeMap<>();
 
         String logicalPosition;
-        for (Integer physicalPosition : mappings.keySet()) {
-            logicalPosition = mappings.get(physicalPosition);
-            reverseMappings.put(logicalPosition, physicalPosition);
+        for (Map.Entry<Integer, String> entry : mappings.entrySet()) {
+            logicalPosition = entry.getValue();
+            reverseMappings.put(logicalPosition, entry.getKey());
         }
 
         return reverseMappings;

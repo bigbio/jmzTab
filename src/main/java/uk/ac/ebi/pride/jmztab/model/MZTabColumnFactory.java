@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.jmztab.model;
 
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -779,9 +780,10 @@ public class MZTabColumnFactory {
     public SortedMap<String, MZTabColumn> findAllColumnsByOrder(String order) {
         SortedMap<String, MZTabColumn> mapping = new TreeMap<>();
 
-        for (String logicalPosition : columnMapping.keySet()) {
+        for (Map.Entry<String, MZTabColumn> entry : columnMapping.entrySet()) {
+            String logicalPosition = entry.getKey();
             if (order.equals(getColumnOrder(logicalPosition))) {
-                mapping.put(logicalPosition, columnMapping.get(logicalPosition));
+                mapping.put(logicalPosition, entry.getValue());
             }
         }
 

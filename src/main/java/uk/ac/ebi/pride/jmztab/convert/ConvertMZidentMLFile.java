@@ -973,8 +973,8 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
 
         //Scores for Proteins
 
-        for(Integer msRunId: totalPSM.keySet())
-            protein.setNumPSMs(metadata.getMsRunMap().get(msRunId), totalPSM.get(msRunId));
+        for(Map.Entry<Integer, Integer> entry : totalPSM.entrySet())
+            protein.setNumPSMs(metadata.getMsRunMap().get(entry.getKey()), entry.getValue());
 
         //Set Search Engine
         Set<SearchEngineParam> searchEngines = new HashSet<>();

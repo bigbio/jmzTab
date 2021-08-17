@@ -5,6 +5,7 @@ import uk.ac.ebi.pride.jmztab.utils.errors.*;
 import uk.ac.ebi.pride.jmztab.utils.parser.*;
 
 import java.io.*;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
@@ -362,39 +363,39 @@ public class MZTabFileParser {
 
         if (errorList.isEmpty()) {
             mzTabFile = new MZTabFile(mtdParser.getMetadata());
-            for (Integer id : commentMap.keySet()) {
-                mzTabFile.addComment(id, commentMap.get(id));
+            for (Map.Entry<Integer, Comment> entry : commentMap.entrySet()) {
+                mzTabFile.addComment(entry.getKey(), entry.getValue());
             }
 
             if (prhParser != null) {
                 MZTabColumnFactory proteinColumnFactory = prhParser.getFactory();
                 mzTabFile.setProteinColumnFactory(proteinColumnFactory);
-                for (Integer id : proteinMap.keySet()) {
-                    mzTabFile.addProtein(id, proteinMap.get(id));
+                for (Map.Entry<Integer, Protein> entry : proteinMap.entrySet()) {
+                    mzTabFile.addProtein(entry.getKey(), entry.getValue());
                 }
             }
 
             if (pehParser != null) {
                 MZTabColumnFactory peptideColumnFactory = pehParser.getFactory();
                 mzTabFile.setPeptideColumnFactory(peptideColumnFactory);
-                for (Integer id : peptideMap.keySet()) {
-                    mzTabFile.addPeptide(id, peptideMap.get(id));
+                for (Map.Entry<Integer, Peptide> entry : peptideMap.entrySet()) {
+                    mzTabFile.addPeptide(entry.getKey(), entry.getValue());
                 }
             }
 
             if (pshParser != null) {
                 MZTabColumnFactory psmColumnFactory = pshParser.getFactory();
                 mzTabFile.setPSMColumnFactory(psmColumnFactory);
-                for (Integer id : psmMap.keySet()) {
-                    mzTabFile.addPSM(id, psmMap.get(id));
+                for (Map.Entry<Integer, PSM> entry : psmMap.entrySet()) {
+                    mzTabFile.addPSM(entry.getKey(), entry.getValue());
                 }
             }
 
             if (smhParser != null) {
                 MZTabColumnFactory smallMoleculeColumnFactory = smhParser.getFactory();
                 mzTabFile.setSmallMoleculeColumnFactory(smallMoleculeColumnFactory);
-                for (Integer id : smallMoleculeMap.keySet()) {
-                    mzTabFile.addSmallMolecule(id, smallMoleculeMap.get(id));
+                for (Map.Entry<Integer, SmallMolecule> entry : smallMoleculeMap.entrySet()) {
+                    mzTabFile.addSmallMolecule(entry.getKey(), entry.getValue());
                 }
             }
         }

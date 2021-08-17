@@ -4,7 +4,7 @@
   <groupId>io.github.bigbio.external</groupId>
   <artifactId>jmztab</artifactId>
   <name>jmztab: Java library to read Tab-delimited for proteomics quant data</name>
-  <version>3.0.12</version>
+  <version>3.0.13</version>
   <description>JmzTab is a Java-based library to read mzTab files containing peptide/protein quantitative data</description>
   <url>https://github.com/bigbio/jmztab</url>
   <licenses>
@@ -220,7 +220,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
+        <version>3.0.1</version>
+        <configuration>
+          <!-- Prevent `gpg` from using pinentry programs -->
+          <gpgArguments>
+            <arg>--pinentry-mode</arg>
+            <arg>loopback</arg>
+          </gpgArguments>
+        </configuration>
         <executions>
           <execution>
             <id>sign-artifacts</id>
@@ -228,13 +235,6 @@
             <goals>
               <goal>sign</goal>
             </goals>
-            <configuration>
-              <!-- Prevent `gpg` from using pinentry programs -->
-              <gpgArguments>
-                <arg>--pinentry-mode</arg>
-                <arg>loopback</arg>
-              </gpgArguments>
-            </configuration>
           </execution>
         </executions>
       </plugin>
