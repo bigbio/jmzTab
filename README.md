@@ -1,14 +1,8 @@
 # jmzTab: Java library for reading and writing mzTab
 
-The jmzTab library provide reading and writing capabilities, as well as supporting the validation of mzTab and the conversion of PRIDE XML and mzIdentML files to mzTab. Currently, the library contains converter for
+The jmzTab library provide reading and writing capabilities, as well as supporting the validation of mzTab and the conversion of mzIdentML files to mzTab. Currently, the library contains converter for
 
-  * [PRIDE XML 2.1](http://www.ebi.ac.uk/pride/schemaDocumentation.do)
   * [mzIdentML 1.1.0](http://www.psidev.info/sites/default/files/mzIdentML1.1.0.xsd)
-
-The jmzTab library is divided in two modules:
-  * jmztab-modular-model: Data Model for mzTab [jmztab-modular-model.zip (latest version)](http://www.ebi.ac.uk/pride/resources/tools/jmztab/latest/jmztab-modular-model.zip)
-
-  * jmztab-modular-converters: jmzTab utilities to convert PRIDE XML and mzIdentML files to mzTab [jmztab-modular-converters.zip (latest version)](http://www.ebi.ac.uk/pride/resources/tools/jmztab/latest/jmztab-modular-converters.zip)
 
 ## jmzTabValidator
 
@@ -16,24 +10,20 @@ The jmzTab library is divided in two modules:
 
 Currently, the tool can be downloaded from the releases section:
 
-  * [ jzmTabValidator Release]()
+  * [jzmTabValidator Release](https://github.com/bigbio/jmzTab/releases/tag/v3.0.10)
 
 ```
-java -jar jmzTabValidator-{version}.jar -help
+java -jar jmztab-{version}.jar -help
 ```
 The output will like following:
 ```
 usage: jmztab
  -check inFile=<inFile>             Choose a file from input directory. This parameter should not be null!
- -convert inFile=<inFile format=<format>   Converts the given format file (PRIDE or mzIdentML) to an mztab file.
+ -convert inFile=<inFile format=<format>   Converts the given format file (mzIdentML) to an mztab file.
  -h,--help                   print help message
  -message code=<code>             print Error/Warn detail message based on code number.
  -outFile <arg>              Dump output data to the given file. If not set, output data will be dumped on stdout.
 ```
-
-## Using the jmzTab library
-
-All components of the jmzTab library were developed as maven projects. For information of how to using jmzTab API, please visit the [Wiki](https://github.com/bigbio/jmzTab/wiki) documents.
 
 ## Maven
 
@@ -47,40 +37,24 @@ For parsing and writing mzTab
 </properties>
 
 <dependency>
-    <groupId>uk.ac.ebi.pride</groupId>
-    <artifactId>jmztab-modular-model</artifactId>
+    <groupId>io.github.bigbio.external</groupId>
+    <artifactId>jmztab</artifactId>
     <version>${jmztab.version}</version>
     <!-- based on mzTab specification version 1.0 -->
 </dependency>
 ```
 
-For converting to mzTab
+The jmzTab library can currently only be found in the [maven central]'s **maven repository**:
 
 ```
-<properties>
-    <jmztab.version>3.0.4</jmztab.version>
-</properties>
-
-<dependency>
-    <groupId>uk.ac.ebi.pride</groupId>
-    <artifactId>jmztab-modular-converters</artifactId>
-    <version>${jmztab.version}</version>
-    <!-- based on mzTab specification version 1.0 -->
-</dependency>
-```
-
-The jmzTab library can currently only be found in the [EBI](http://www.ebi.ac.uk)'s **maven repository**:
-
-```
-<repository>
-    <id>nexus-ebi-repo</id>
-    <name>EBI Nexus Repository (Release)</name>
-    <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release/</url>
-    <releases/>
-    <snapshots>
-        <enabled>false</enabled>
-    </snapshots>
-</repository>
+ <repository>
+      <id>sonatype-release</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <repository>
+      <id>sonatype-snapshopt</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+ </repository>
 ```
 
 
