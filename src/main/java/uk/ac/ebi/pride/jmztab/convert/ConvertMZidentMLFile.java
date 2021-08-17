@@ -360,7 +360,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                                                     site = new StringBuilder("C-term");
                                                     position = "Protein C-term";
                                                 } else {
-                                                    logger.warn("Cv Term for Rule: " + rule.toString() + "is not recognized");
+                                                    logger.warn("Cv Term for Rule: " + rule + "is not recognized");
                                                     site = new StringBuilder("C-term or N-term");
                                                 }
                                             }
@@ -903,7 +903,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
                 //Updates PSMId
                 psm.setPSM_ID(indexSpectrumID.get(oldPSM.getId()));
                 psm.setOptionColumnValue(OPTIONAL_ID_COLUMN, oldPSM.getId());
-                Boolean decoy = peptideEvidenceRef.getPeptideEvidence().isIsDecoy();
+                boolean decoy = peptideEvidenceRef.getPeptideEvidence().isIsDecoy();
                 psm.setOptionColumnValue(OPTIONAL_DECOY_COLUMN, (!decoy)?0:1);
                 psmList.add(psm);
             }
@@ -962,7 +962,7 @@ public class ConvertMZidentMLFile extends ConvertProvider<File, Void> {
         for(SpectrumIdentificationItem specItem: spectrumItems){
             String ref = reader.getIdentSpectrumMap().get(specItem.getId())[1];
             if(spectraToRun.containsKey(ref)){
-                Integer value = 1;
+                int value = 1;
                 if(totalPSM.containsKey(spectraToRun.get(ref))){
                      value = totalPSM.get(spectraToRun.get(ref)) + 1;
                 }

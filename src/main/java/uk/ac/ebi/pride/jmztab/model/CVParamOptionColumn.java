@@ -35,9 +35,8 @@ public class CVParamOptionColumn extends OptionColumn {
      */
     public static String getHeader(IndexedElement element, CVParam param) {
 
-        String sb = OPT + "_" + (element == null ? GLOBAL : element.getReference()) +
-                "_" + CV + param.getAccession() + "_" + param.getName().replaceAll(" ", "_");
-        return sb;
+      return OPT + "_" + (element == null ? GLOBAL : element.getReference()) +
+              "_" + CV + param.getAccession() + "_" + param.getName().replaceAll(" ", "_");
     }
 
 }

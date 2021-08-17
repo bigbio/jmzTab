@@ -521,10 +521,9 @@ public class MZTabUtils {
         Matcher matcher = pattern.matcher(target);
         if (matcher.find()) {
 
-            String sb = matcher.group(1) +
-                    "-" +
-                    matcher.group(3);
-            return sb;
+          return matcher.group(1) +
+                  "-" +
+                  matcher.group(3);
         } else {
             return target;
         }

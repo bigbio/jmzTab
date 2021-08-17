@@ -129,7 +129,7 @@ public abstract class MZTabRecord {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        Iterator it = record.values().iterator();
+        Iterator<Object> it = record.values().iterator();
         Object value;
         if (it.hasNext()) {
             value = translateValue(it.next());

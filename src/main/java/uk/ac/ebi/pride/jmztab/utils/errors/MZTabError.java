@@ -105,9 +105,8 @@ public class MZTabError {
     @Override
     public String toString() {
 
-        String sb = "[" + type.getLevel() + "-" + type.getCode() + "] " +
-                "line " + lineNumber + ": " +
-                message + NEW_LINE;
-        return sb;
+      return "[" + type.getLevel() + "-" + type.getCode() + "] " +
+              "line " + lineNumber + ": " +
+              message + NEW_LINE;
     }
 }

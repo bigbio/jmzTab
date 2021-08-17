@@ -234,7 +234,6 @@ public abstract class MZTabHeaderLineParser extends MZTabLineParser {
         if (items[offset].contains("abundance_assay")) {
             checkAbundanceAssayColumn(items[offset], order);
 
-            return offset;
         } else {
             String abundanceHeader = "";
             String abundanceStdevHeader = "";
@@ -250,8 +249,8 @@ public abstract class MZTabHeaderLineParser extends MZTabLineParser {
 
             checkAbundanceStudyVariableColumns(abundanceHeader, abundanceStdevHeader, abundanceStdErrorHeader, order);
 
-            return offset;
         }
+      return offset;
     }
 
     /**
@@ -432,7 +431,7 @@ public abstract class MZTabHeaderLineParser extends MZTabLineParser {
      */
     protected int parseIndex(String header, String id) throws MZTabException {
         try {
-            Integer index = Integer.parseInt(id);
+            int index = Integer.parseInt(id);
             if (index < 1) {
                 throw new NumberFormatException();
             }

@@ -52,7 +52,7 @@ public class MZTabErrorList {
      */
     public MZTabErrorList(MZTabErrorType.Level level, int maxErrorCount) {
         this.level = level == null ? MZTabErrorType.Level.Error : level;
-        this.maxErrorCount = maxErrorCount>=0?maxErrorCount:0;
+        this.maxErrorCount = Math.max(maxErrorCount, 0);
         this.errorList = new ArrayList<>(this.maxErrorCount);
     }
 
@@ -100,7 +100,7 @@ public class MZTabErrorList {
      * @param maxErrorCount needs to be a positive number or zero will be set
      */
     public void setMaxErrorCount(int maxErrorCount) {
-        this.maxErrorCount = maxErrorCount>=0?maxErrorCount:0;
+        this.maxErrorCount = Math.max(maxErrorCount, 0);
     }
 
     /**

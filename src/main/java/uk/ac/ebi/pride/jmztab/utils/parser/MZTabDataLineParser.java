@@ -218,11 +218,8 @@ public abstract class MZTabDataLineParser extends MZTabLineParser {
             this.errorList.add(new MZTabError(FormatErrorType.Double, lineNumber, column.getHeader(), target));
             return null;
         }
-        if (value.equals(Double.NaN) || value.equals(Double.POSITIVE_INFINITY)) {
-            return value;
-        }
 
-        return value;
+      return value;
     }
 
     /**

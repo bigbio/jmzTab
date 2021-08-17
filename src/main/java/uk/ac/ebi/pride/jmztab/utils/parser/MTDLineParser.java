@@ -198,7 +198,7 @@ public class MTDLineParser extends MZTabLineParser {
      */
     private int checkIndex(String defineLabel, String id) throws MZTabException {
         try {
-            Integer index = Integer.parseInt(id);
+            int index = Integer.parseInt(id);
             if (index < 1) {
                 throw new NumberFormatException();
             }
@@ -273,7 +273,7 @@ public class MTDLineParser extends MZTabLineParser {
             switch (element) {
                 case MZTAB:
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case MZTAB_VERSION:
                             metadata.setMZTabVersion(valueLabel);
                             break;
@@ -313,7 +313,7 @@ public class MTDLineParser extends MZTabLineParser {
                     property = checkProperty(element, matcher.group(5));
                     param = checkParam(defineLabel, valueLabel);
 
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case INSTRUMENT_NAME:
                             metadata.addInstrumentName(id, param);
                             break;
@@ -377,7 +377,7 @@ public class MTDLineParser extends MZTabLineParser {
                     id = checkIndex(defineLabel, matcher.group(3));
                     property = checkProperty(element, matcher.group(5));
 
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case CONTACT_NAME:
                             metadata.addContactName(id, valueLabel);
                             break;
@@ -441,7 +441,7 @@ public class MTDLineParser extends MZTabLineParser {
                     break;
                 case PROTEIN:
                     property = checkProperty(element, matcher.group(5));
-                    if ((property != null ? property : null) == MetadataProperty.PROTEIN_QUANTIFICATION_UNIT) {
+                    if ((property) == MetadataProperty.PROTEIN_QUANTIFICATION_UNIT) {
                         if (metadata.getProteinQuantificationUnit() != null) {
                             throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
                         }
@@ -450,7 +450,7 @@ public class MTDLineParser extends MZTabLineParser {
                     break;
                 case PEPTIDE:
                     property = checkProperty(element, matcher.group(5));
-                    if ((property != null ? property : null) == MetadataProperty.PEPTIDE_QUANTIFICATION_UNIT) {
+                    if ((property) == MetadataProperty.PEPTIDE_QUANTIFICATION_UNIT) {
                         if (metadata.getPeptideQuantificationUnit() != null) {
                             throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
                         }
@@ -459,7 +459,7 @@ public class MTDLineParser extends MZTabLineParser {
                     break;
                 case SMALL_MOLECULE:
                     property = checkProperty(element, matcher.group(5));
-                    if ((property != null ? property : null) == MetadataProperty.SMALL_MOLECULE_QUANTIFICATION_UNIT) {
+                    if ((property) == MetadataProperty.SMALL_MOLECULE_QUANTIFICATION_UNIT) {
                         if (metadata.getSmallMoleculeQuantificationUnit() != null) {
                             throw new MZTabException(new MZTabError(LogicalErrorType.DuplicationDefine, lineNumber, defineLabel));
                         }
@@ -470,7 +470,7 @@ public class MTDLineParser extends MZTabLineParser {
                     id = checkIndex(defineLabel, matcher.group(3));
                     property = checkProperty(element, matcher.group(5));
 
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case MS_RUN_FORMAT:
                             metadata.addMsRunFormat(id, checkParam(defineLabel, valueLabel));
                             break;
@@ -499,7 +499,7 @@ public class MTDLineParser extends MZTabLineParser {
                     id = checkIndex(defineLabel, matcher.group(3));
                     property = checkProperty(element, matcher.group(5));
 
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case SAMPLE_SPECIES:
                             metadata.addSampleSpecies(id, checkParam(defineLabel, valueLabel));
                             break;
@@ -525,7 +525,7 @@ public class MTDLineParser extends MZTabLineParser {
                         // no quantification modification. For example: assay[1-n]-quantification_reagent
                         id = checkIndex(defineLabel, matcher.group(3));
                         property = checkProperty(element, matcher.group(5));
-                        switch (property != null ? property : null) {
+                        switch (property) {
                             case ASSAY_QUANTIFICATION_REAGENT:
                                 metadata.addAssayQuantificationReagent(id, checkParam(defineLabel, valueLabel));
                                 break;
@@ -579,7 +579,7 @@ public class MTDLineParser extends MZTabLineParser {
                 case STUDY_VARIABLE:
                     id = checkIndex(defineLabel, matcher.group(3));
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case STUDY_VARIABLE_ASSAY_REFS:
                             indexedElementList = checkIndexedElementList(defineLabel, valueLabel, MetadataElement.ASSAY);
                             for (IndexedElement e : indexedElementList) {
@@ -616,7 +616,7 @@ public class MTDLineParser extends MZTabLineParser {
                 case CV:
                     id = checkIndex(defineLabel, matcher.group(3));
                     property = checkProperty(element, matcher.group(5));
-                    switch (property != null ? property : null) {
+                    switch (property) {
                         case CV_LABEL:
                             metadata.addCVLabel(id, valueLabel);
                             break;
