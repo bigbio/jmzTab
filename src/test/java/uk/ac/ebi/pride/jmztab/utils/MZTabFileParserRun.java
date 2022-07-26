@@ -19,8 +19,7 @@ public class MZTabFileParserRun {
 
     @Before
     public void SetUp() throws URISyntaxException {
-        uri = (MZTabFileParserRun.class.getClassLoader().getResource("testset/Score_MzTab.mztab")) != null ?
-                (MZTabFileParserRun.class.getClassLoader().getResource("testset/Score_MzTab.mztab")).toURI(): null;
+        uri = (new File("/Users/yperez/work/PXD006482-clear-cell-renal-carcinoma.sdrf_openms_design_openms.mzTab")).toURI();
     }
 
     public void check(File tabFile) throws Exception {

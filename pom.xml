@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.bigbio.external</groupId>
+  <groupId>uk.ac.ebi.pride.utilities</groupId>
   <artifactId>jmztab</artifactId>
   <name>jmztab: Java library to read Tab-delimited for proteomics quant data</name>
-  <version>3.0.13</version>
+  <version>3.0.14-SNAPSHOT</version>
   <description>JmzTab is a Java-based library to read mzTab files containing peptide/protein quantitative data</description>
   <url>https://github.com/bigbio/jmztab</url>
   <licenses>
@@ -274,10 +274,15 @@
   </repositories>
 
   <distributionManagement>
+    <repository>
+      <id>pst-release</id>
+      <name>EBI Nexus Repository</name>
+      <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release</url>
+    </repository>
     <snapshotRepository>
-      <id>sonatype-snapshopt</id>
-      <name>Central Repository OSSRH</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>pst-snapshots</id>
+      <name>EBI Nexus Snapshots Repository</name>
+      <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
