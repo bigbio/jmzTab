@@ -1,6 +1,7 @@
 # jmzTab: Java library for reading and writing mzTab
 
-(https://github.com/bigbio/jmzTab/actions/workflows/maven-publish.yml) [![DOI](https://zenodo.org/badge/288845299.svg)](https://zenodo.org/badge/latestdoi/288845299)
+[![Java CI with Maven](https://github.com/bigbio/jmzTab/actions/workflows/maven.yml/badge.svg)](https://github.com/bigbio/jmzTab/actions/workflows/maven.yml)
+[![DOI](https://zenodo.org/badge/288845299.svg)](https://zenodo.org/badge/latestdoi/288845299)
 
 The jmzTab library provide reading and writing capabilities, as well as supporting the validation of mzTab and the conversion of mzIdentML files to mzTab. Currently, the library contains converter for
 
